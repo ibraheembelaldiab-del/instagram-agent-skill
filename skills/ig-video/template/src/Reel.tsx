@@ -9,6 +9,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
+import {scenes} from './scenes';
 
 export type Beat = {
   start: number; // seconds
@@ -17,6 +18,7 @@ export type Beat = {
   card?: string; // on-screen text, six words or fewer
   shot?: string; // what to film, shown until a clip is added
   clip?: string; // file in public/clips
+  scene?: string; // an animated scene from scenes.tsx, drawn over the background
 };
 
 export type ReelData = {
@@ -59,7 +61,7 @@ const Background: React.FC<{beat: Beat; color: string; index: number}> = ({
       }}
     >
       <Steam />
-      {beat.shot ? (
+      {beat.shot && !beat.scene ? (
         <div
           style={{
             position: 'absolute',
@@ -180,6 +182,11 @@ const Caption: React.FC<{text: string; data: ReelData}> = ({text, data}) => {
   );
 };
 
+const SceneView: React.FC<{name: string}> = ({name}) => {
+  const Scene = scenes[name];
+  return <Scene />;
+};
+
 export const Reel: React.FC<ReelData> = (data) => {
   const {fps} = useVideoConfig();
   return (
@@ -192,6 +199,7 @@ export const Reel: React.FC<ReelData> = (data) => {
           durationInFrames={Math.round(beat.dur * fps)}
         >
           <Background beat={beat} index={i} color={data.colors.bg[i % data.colors.bg.length]} />
+          {beat.scene && scenes[beat.scene] ? <SceneView name={beat.scene} /> : null}
           {beat.card ? <Card text={beat.card} data={data} /> : null}
           <Caption text={beat.say} data={data} />
         </Sequence>

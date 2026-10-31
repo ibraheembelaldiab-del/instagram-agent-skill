@@ -49,6 +49,11 @@ Each beat in `reel.json`:
 - `shot` is what to film. Until a `clip` is added, it shows small at the top of
   a coloured background, so the video renders before anything is filmed.
 - `clip` is a file in `public/clips/`. It fills the frame, muted.
+- `scene` names an animated scene in `src/scenes.tsx`, drawn over the
+  background. Use it when the user has no footage and wants the video fully
+  animated: write one small SVG scene per beat that shows what the line says
+  (a plane for "fly", a stopwatch for "timer"), keep it moving every frame,
+  and keep its subject between y 700 and 1350.
 - `start` and `dur` are seconds. The video is exactly as long as the last beat.
 
 ## Steps
