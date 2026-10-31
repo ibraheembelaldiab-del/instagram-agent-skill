@@ -69,7 +69,7 @@ out loud.
 | `/ig-dm` | The keyword delivery, the first message, the collab pitch, and the two follow-ups. Two. |
 | `/ig-repurpose` | One video, podcast or newsletter into a week of reels and carousels that each stand alone. |
 | `/ig-video` | Builds the Reel. The script becomes a 1080x1920 MP4 with [Remotion](https://github.com/remotion-dev/remotion): animated cards, word-by-word captions, your clips. |
-| `/ig-voiceover` | A free ElevenLabs replacement. Reads the script with [Piper](https://github.com/OHF-Voice/piper1-gpl) on your own computer and times every beat. |
+| `/ig-voiceover` | A free ElevenLabs replacement. Reads the script with [Kokoro](https://github.com/thewh1teagle/kokoro-onnx) on your own computer, with a tone tag per line so it does not sound flat. |
 | `/ig-transcribe` | [Whisper](https://github.com/openai/whisper) on your recording: an .srt in short lines, the transcript, and real timings for the video. |
 | `/ig-audit` | Post-mortem on what you already posted. Ranks by outlier multiple and sends per reach, not views. |
 
@@ -336,8 +336,8 @@ templates/voice.md                 your voice profile. Fill this in first.
 
 The pack itself is MIT. Three skills call free tools you install yourself, and
 those keep their own licences: Remotion (free for individuals and companies of
-up to three people, a paid licence above that), Piper (GPL-3.0) and Whisper
-(MIT). Everything still runs on your own computer, with no account.
+up to three people, a paid licence above that), Kokoro (Apache-2.0), Piper
+(GPL-3.0) and Whisper (MIT). Everything still runs on your own computer, with no account.
 
 ## Credit
 
