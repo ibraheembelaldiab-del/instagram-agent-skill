@@ -106,6 +106,11 @@ the style is blocks, pastel light and a flying camera, all drawn here.
   show the line, plus one short sign (6 letters or fewer reads best).
 - `src/World.tsx` is the camera and the sky. Leave it alone unless the user
   wants a different move.
+- Signs and plate labels come from each beat's `sign` and `labels` in
+  `reel.json`, so a translated `reel-zh.json` gets its own. Chinese signs
+  are built from 12x12 block characters: run
+  `python3 tools/cjk_glyphs.py --from reel-zh.json` first, then render with
+  `--props=reel-zh.json`.
 - Render with software 3D, which works on any machine:
   `npx remotion render Reel3D out/reel-3d.mp4 --gl=swangle`. It is slower
   than the flat template, so render a few stills first

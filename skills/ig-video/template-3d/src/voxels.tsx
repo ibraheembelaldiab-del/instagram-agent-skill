@@ -74,7 +74,7 @@ export const PixelText: React.FC<{
         const k = pop(t, delay + px.letter * 0.06);
         const bob = Math.sin(t * 5 + px.letter * 0.8) * 0.08;
         return (
-          <group key={i} position={[px.x * size, px.y * size + bob, 0]} scale={k}>
+          <group key={i} position={[px.x * size, px.y * size + bob, 0]} scale={k * px.s}>
             <Box s={[size * 0.96, size * 0.96, size * 0.9]} c={c} />
             <Box p={[0, -size * 0.18, -size * 0.35]} s={[size, size, size * 0.4]} c={edge} />
           </group>

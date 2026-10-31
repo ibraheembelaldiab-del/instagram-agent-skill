@@ -1,3 +1,5 @@
+import CJK from './cjkglyphs.json';
+
 // A 5x7 block font, so signs are built out of cubes like the rest of the world.
 // '#' is a filled pixel. '@' is a heart and '%' a bookmark, for icons.
 
@@ -45,20 +47,32 @@ const G: Record<string, string[]> = {
   ' ': ['.....', '.....', '.....', '.....', '.....', '.....', '.....'],
 };
 
-export type Pixel = {x: number; y: number; letter: number};
+// Chinese characters come pre-drawn as 12x12 grids (see cjkglyphs.json),
+// scaled down so a character stands about as tall as a Latin capital.
+const CJK_GLYPHS = CJK as Record<string, string[]>;
+export const CJK_SCALE = 0.75;
+
+export type Pixel = {x: number; y: number; letter: number; s: number};
 
 // Pixels of a line of text, centred on x, baseline at y = 0, in pixel units.
 export const layout = (text: string): {pixels: Pixel[]; width: number} => {
   const chars = Array.from(text.toUpperCase());
-  const width = chars.length * 6 - 1;
+  const glyphs = chars.map((ch) => {
+    const cjk = CJK_GLYPHS[ch];
+    return cjk ? {rows: cjk, s: CJK_SCALE} : {rows: G[ch] ?? G['?'], s: 1};
+  });
+  const advance = (g: {rows: string[]; s: number}) => (g.rows[0].length + 1) * g.s;
+  const width = glyphs.reduce((w, g) => w + advance(g), 0) - 1;
   const pixels: Pixel[] = [];
-  chars.forEach((ch, li) => {
-    const glyph = G[ch] ?? G['?'];
-    glyph.forEach((row, ry) => {
+  let cursor = -width / 2;
+  glyphs.forEach((g, li) => {
+    const h = g.rows.length;
+    g.rows.forEach((row, ry) => {
       Array.from(row).forEach((cell, rx) => {
-        if (cell === '#') pixels.push({x: li * 6 + rx - width / 2 + 0.5, y: 6 - ry, letter: li});
+        if (cell === '#') pixels.push({x: cursor + (rx + 0.5) * g.s, y: (h - 1 - ry) * g.s, letter: li, s: g.s});
       });
     });
+    cursor += advance(g);
   });
   return {pixels, width};
 };

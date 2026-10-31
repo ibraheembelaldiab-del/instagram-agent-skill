@@ -34,7 +34,8 @@ const Caption: React.FC<{text: string}> = ({text}) => {
         lineHeight: 1.25,
         fontFamily: FONT,
         color: 'white',
-        WebkitTextStroke: '2px #5a1f3a',
+        // Chinese strokes are dense, so a thick outline turns them to mud.
+        WebkitTextStroke: spaced ? '2px #5a1f3a' : '0.5px #5a1f3a',
         textShadow: '0 4px 0 #5a1f3a, 0 8px 18px rgba(90,31,58,0.5)',
       }}
     >

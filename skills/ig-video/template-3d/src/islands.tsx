@@ -3,7 +3,8 @@ import {Ball, Box, Cyl, Island, PixelText, Plane, Slice, clamp, pop, rand} from 
 // One floating island per beat of the script. Each gets `t`, the seconds since
 // its beat started (negative while the camera is still flying in).
 
-type P = {t: number; dur: number};
+// sign and labels come from reel.json, so another language swaps the text.
+type P = {t: number; dur: number; sign?: string; labels?: string[]};
 
 const Pot: React.FC<{t: number; r?: number}> = ({t, r = 3.6}) => (
   <group>
@@ -30,7 +31,7 @@ const Pot: React.FC<{t: number; r?: number}> = ({t, r = 3.6}) => (
   </group>
 );
 
-const City: React.FC<{t: number; sign?: boolean}> = ({t, sign = true}) => (
+const City: React.FC<{t: number; sign?: string}> = ({t, sign}) => (
   <group>
     <Island w={20} top="#7cc7e8" />
     <Box p={[0, 0.05, 0]} s={[16, 0.2, 16]} c="#9be07a" />
@@ -49,24 +50,24 @@ const City: React.FC<{t: number; sign?: boolean}> = ({t, sign = true}) => (
     <Box p={[2, 5, 1]} s={[1.6, 10, 1.6]} c="#f6f0ff" />
     <Box p={[2, 10.4, 1]} s={[0.4, 1.2, 0.4]} c="#ff6b6b" glow={0.6} />
     <Plane p={[Math.cos(t * 0.9) * 10, 13 + Math.sin(t * 2) * 0.5, Math.sin(t * 0.9) * 10]} ry={-t * 0.9} rz={0.25} />
-    {sign ? <PixelText text="SHANTOU" t={t} p={[0, 15, 2]} size={0.34} /> : null}
+    {sign ? <PixelText text={sign} t={t} p={[0, 15, 2]} size={0.34} /> : null}
   </group>
 );
 
-const Hook: React.FC<P> = ({t}) => <City t={t} />;
+const Hook: React.FC<P> = ({t, sign = 'SHANTOU'}) => <City t={t} sign={sign} />;
 
-const Sport: React.FC<P> = ({t}) => (
+const Sport: React.FC<P> = ({t, sign = 'SPORT!'}) => (
   <group>
     <Island />
     <Box p={[0, 0.2, 0]} s={[9, 0.4, 9]} c="#a0522d" />
     <group position={[0, 0.4, 0]}>
       <Pot t={t} />
     </group>
-    <PixelText text="SPORT!" t={t} p={[0, 7, 0]} size={0.3} delay={0.2} />
+    <PixelText text={sign} t={t} p={[0, 7, 0]} size={0.3} delay={0.2} />
   </group>
 );
 
-const Cut: React.FC<P> = ({t}) => {
+const Cut: React.FC<P> = ({t, sign = 'FRESH'}) => {
   const chop = Math.abs(Math.sin(t * 7));
   const slices = Math.min(6, Math.floor(clamp(t, 0, 3) * 2.4));
   return (
@@ -86,22 +87,23 @@ const Cut: React.FC<P> = ({t}) => {
       {Array.from({length: slices}).map((_, i) => (
         <Slice key={i} p={[2.8, 0.7 + i * 0.16, 0]} r={[0, i * 0.3, 0]} />
       ))}
-      <PixelText text="FRESH" t={t} p={[0, 7.5, 0]} size={0.3} />
+      <PixelText text={sign} t={t} p={[0, 7.5, 0]} size={0.3} />
     </group>
   );
 };
 
-const PLATES: [number, number, string][] = [
-  [-4.6, 1, 'DIAOLONG'],
-  [0, -1.5, 'WUHUAZHI'],
-  [4.6, 1, 'XIONGKOULAO'],
+const PLATES: [number, number][] = [
+  [-4.6, 1],
+  [0, -1.5],
+  [4.6, 1],
 ];
 
-const Plates: React.FC<P> = ({t}) => (
+const Plates: React.FC<P> = ({t, labels = ['DIAOLONG', 'WUHUAZHI', 'XIONGKOULAO']}) => (
   <group>
     <Island w={16} />
     <Box p={[0, 0.2, 0]} s={[13, 0.4, 7]} c="#a0522d" />
-    {PLATES.map(([x, z, name], i) => {
+    {PLATES.map(([x, z], i) => {
+      const name = labels[i] ?? '';
       const k = pop(t, i * 0.25);
       return (
         <group key={name} position={[x, 0.5, z]} scale={k}>
@@ -115,7 +117,7 @@ const Plates: React.FC<P> = ({t}) => (
   </group>
 );
 
-const Cow: React.FC<P> = ({t}) => {
+const Cow: React.FC<P> = ({t, sign = 'CUTS'}) => {
   const glow = 0.5 + 0.5 * Math.sin(t * 9);
   return (
     <group>
@@ -137,7 +139,7 @@ const Cow: React.FC<P> = ({t}) => {
           <Box key={`g${i}`} p={[x, y, 1.35]} s={[0.9, 0.9, 0.12]} c="#ff3b30" glow={glow} />
         ))}
       </group>
-      <PixelText text="CUTS" t={t} p={[0, 7, 0]} size={0.3} />
+      <PixelText text={sign} t={t} p={[0, 7, 0]} size={0.3} />
     </group>
   );
 };
@@ -192,7 +194,7 @@ const Head: React.FC<{p: [number, number, number]; ry: number; t: number; i: num
   );
 };
 
-const Judge: React.FC<P> = ({t}) => (
+const Judge: React.FC<P> = ({t, sign = '?!'}) => (
   <group>
     <Island />
     <Cyl p={[0, 1.2, 0]} r1={2.6} h={0.3} c="#a0522d" seg={12} />
@@ -207,11 +209,11 @@ const Judge: React.FC<P> = ({t}) => (
       const z = Math.sin(a) * 4.3;
       return <Head key={i} i={i} t={t} p={[x, 0, z]} ry={Math.atan2(-x, -z) * 0.4} />;
     })}
-    <PixelText text="?!" t={t} p={[0, 7, 0]} size={0.4} />
+    <PixelText text={sign} t={t} p={[0, 7, 0]} size={0.4} />
   </group>
 );
 
-const Balls: React.FC<P> = ({t}) => (
+const Balls: React.FC<P> = ({t, sign = 'BOING!'}) => (
   <group>
     <Island />
     <Box p={[0, 0.2, 0]} s={[9, 0.4, 5]} c="#d9b38c" />
@@ -221,11 +223,11 @@ const Balls: React.FC<P> = ({t}) => (
       const squash = h < 0.12 ? 1 + (0.12 - h) * 3 : 1;
       return <Ball key={i} p={[x, 1.2 + h * 4, 0]} r={1} c="#a9573f" s={[squash, 1 / squash, squash]} />;
     })}
-    <PixelText text="BOING!" t={t} p={[0, 7.5, 0]} size={0.3} />
+    <PixelText text={sign} t={t} p={[0, 7.5, 0]} size={0.3} />
   </group>
 );
 
-const Sauce: React.FC<P> = ({t, dur}) => {
+const Sauce: React.FC<P> = ({t, dur, sign = 'SHACHA'}) => {
   const u = clamp(t / Math.max(0.1, dur));
   const down = Math.sin(u * Math.PI);
   return (
@@ -238,7 +240,7 @@ const Sauce: React.FC<P> = ({t, dur}) => {
         <Box p={[0.2, 1.5, 0]} s={[0.12, 3.4, 0.12]} c="#d8b06a" />
         <Slice p={[0, -0.3, 0]} r={[0, 0, Math.PI / 2]} />
       </group>
-      <PixelText text="SHACHA" t={t} p={[0, 7.5, 0]} size={0.3} />
+      <PixelText text={sign} t={t} p={[0, 7.5, 0]} size={0.3} />
     </group>
   );
 };
@@ -266,21 +268,21 @@ const Bite: React.FC<P> = ({t}) => {
   );
 };
 
-const Save: React.FC<P> = ({t}) => (
+const Save: React.FC<P> = ({t, sign = 'SAVE'}) => (
   <group>
     <Island />
     <group rotation={[0, Math.sin(t * 2) * 0.4, 0]}>
       <PixelText text="%" t={t} p={[0, 2, 0]} size={0.8} c="#fff6e5" edge="#e0a93a" />
     </group>
-    <PixelText text="SAVE" t={t} p={[0, 9, 0]} size={0.3} delay={0.2} />
+    <PixelText text={sign} t={t} p={[0, 9, 0]} size={0.3} delay={0.2} />
   </group>
 );
 
-const Bye: React.FC<P> = ({t}) => (
+const Bye: React.FC<P> = ({t, sign = 'SHANTOU'}) => (
   <group>
-    <City t={t + 3} sign={false} />
+    <City t={t + 3} />
     <Plane p={[-6 + t * 6, 6 + t * 3, 4]} ry={0} rz={0.35} scale={1.3} />
-    <PixelText text="SHANTOU" t={t} p={[0, 15, 2]} size={0.34} />
+    <PixelText text={sign} t={t} p={[0, 15, 2]} size={0.34} />
   </group>
 );
 

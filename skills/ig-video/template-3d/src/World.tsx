@@ -5,7 +5,7 @@ import type {PerspectiveCamera} from 'three';
 import {ISLANDS} from './islands';
 import {Cloud, rand, type V3} from './voxels';
 
-export type Beat = {start: number; dur: number; say: string};
+export type Beat = {start: number; dur: number; say: string; sign?: string; labels?: string[]};
 
 // Islands float down a long diagonal, so every move is a forward swoop.
 const SPACING = 60;
@@ -85,7 +85,7 @@ export const World: React.FC<{beats: Beat[]}> = ({beats}) => {
         const Scene = ISLANDS[i] ?? ISLANDS[ISLANDS.length - 1];
         return (
           <group key={i} position={islandPos(i)}>
-            <Scene t={time - b.start} dur={b.dur} />
+            <Scene t={time - b.start} dur={b.dur} sign={b.sign} labels={b.labels} />
           </group>
         );
       })}
