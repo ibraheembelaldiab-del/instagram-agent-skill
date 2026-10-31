@@ -49,7 +49,7 @@ const City: React.FC<{t: number; sign?: boolean}> = ({t, sign = true}) => (
     <Box p={[2, 5, 1]} s={[1.6, 10, 1.6]} c="#f6f0ff" />
     <Box p={[2, 10.4, 1]} s={[0.4, 1.2, 0.4]} c="#ff6b6b" glow={0.6} />
     <Plane p={[Math.cos(t * 0.9) * 10, 13 + Math.sin(t * 2) * 0.5, Math.sin(t * 0.9) * 10]} ry={-t * 0.9} rz={0.25} />
-    {sign ? <PixelText text="SHANTOU" t={t} p={[0, 15, 2]} size={0.42} /> : null}
+    {sign ? <PixelText text="SHANTOU" t={t} p={[0, 15, 2]} size={0.34} /> : null}
   </group>
 );
 
@@ -92,9 +92,9 @@ const Cut: React.FC<P> = ({t}) => {
 };
 
 const PLATES: [number, number, string][] = [
-  [-4.2, 0, 'DIAOLONG'],
-  [0, -2.5, 'WUHUAZHI'],
-  [4.2, 0, 'XIONGKOULAO'],
+  [-4.6, 1, 'DIAOLONG'],
+  [0, -1.5, 'WUHUAZHI'],
+  [4.6, 1, 'XIONGKOULAO'],
 ];
 
 const Plates: React.FC<P> = ({t}) => (
@@ -108,7 +108,7 @@ const Plates: React.FC<P> = ({t}) => (
           <Cyl r1={1.6} r2={1.3} h={0.25} c="#ffffff" seg={14} />
           <Slice p={[-0.2, 0.25, 0]} r={[0, 0.4, 0]} />
           <Slice p={[0.3, 0.4, 0.2]} r={[0, -0.3, 0]} />
-          <PixelText text={name} t={t} p={[0, 2.4 + (i % 2) * 1.6, 0]} size={0.13} delay={i * 0.25} edge="#7a1c14" />
+          <PixelText text={name} t={t} p={[0, 2.2 + i * 1.5, 0]} size={0.11} delay={i * 0.25} edge="#7a1c14" />
         </group>
       );
     })}
@@ -171,7 +171,7 @@ const Dip: React.FC<P> = ({t, dur}) => {
         <Box p={[0.2, 1.5, 0]} s={[0.12, 3.4, 0.12]} c="#d8b06a" />
         <Slice p={[0, -0.3, 0]} r={[0, 0, Math.PI / 2]} />
       </group>
-      <PixelText key={n} text={String(n)} t={t * 6} p={[-4.5, 6, 0]} size={0.45} />
+      <PixelText key={n} text={String(n)} t={t * 6} p={[-2.5, 7.5, 0]} size={0.4} />
     </group>
   );
 };
@@ -280,7 +280,7 @@ const Bye: React.FC<P> = ({t}) => (
   <group>
     <City t={t + 3} sign={false} />
     <Plane p={[-6 + t * 6, 6 + t * 3, 4]} ry={0} rz={0.35} scale={1.3} />
-    <PixelText text="SHANTOU" t={t} p={[0, 15, 2]} size={0.42} />
+    <PixelText text="SHANTOU" t={t} p={[0, 15, 2]} size={0.34} />
   </group>
 );
 
