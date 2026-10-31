@@ -24,6 +24,8 @@ export type Beat = {
 export type ReelData = {
   fps: number;
   audio?: string; // voiceover file in public/, e.g. "voiceover.wav"
+  music?: string; // background track in public/, played quietly under the voice
+  musicVolume?: number; // 0 to 1, default 0.12
 
   colors: {bg: string[]; card: string; text: string; accent: string};
   beats: Beat[];
@@ -192,6 +194,7 @@ export const Reel: React.FC<ReelData> = (data) => {
   return (
     <AbsoluteFill style={{backgroundColor: '#120806'}}>
       {data.audio ? <Audio src={staticFile(data.audio)} /> : null}
+      {data.music ? <Audio src={staticFile(data.music)} volume={data.musicVolume ?? 0.12} /> : null}
       {data.beats.map((beat, i) => (
         <Sequence
           key={i}

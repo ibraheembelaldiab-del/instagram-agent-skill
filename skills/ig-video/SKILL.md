@@ -54,6 +54,8 @@ Each beat in `reel.json`:
   animated: write one small SVG scene per beat that shows what the line says
   (a plane for "fly", a stopwatch for "timer"), keep it moving every frame,
   and keep its subject between y 700 and 1350.
+- `music` is a background track in `public/`, played under the voice at
+  `musicVolume` (default 0.12, so the voice stays on top).
 - `start` and `dur` are seconds. The video is exactly as long as the last beat.
 
 ## Steps
