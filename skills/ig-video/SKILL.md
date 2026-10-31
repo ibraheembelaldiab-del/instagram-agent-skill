@@ -54,6 +54,9 @@ Each beat in `reel.json`:
   animated: write one small SVG scene per beat that shows what the line says
   (a plane for "fly", a stopwatch for "timer"), keep it moving every frame,
   and keep its subject between y 700 and 1350.
+- `label` and `labels` are text a scene can show, for example a place name on
+  a map pin or name tags popping up over the user's own footage. A scene
+  works over a clip too, so labels can sit on real video.
 - `music` is a background track in `public/`, played under the voice at
   `musicVolume` (default 0.12, so the voice stays on top).
 - `start` and `dur` are seconds. The video is exactly as long as the last beat.
@@ -74,6 +77,14 @@ Each beat in `reel.json`:
    hook card is up in the first second and nothing sits in the bottom 420 or
    the right 160 pixels.
 6. `npm run render`. The file lands in `out/reel.mp4`.
+
+   **Another language:** copy `reel.json` to `reel-zh.json` (or any name),
+   translate `say`, `card` and `labels`, point `audio` at that language's
+   voiceover, re-time the beats against it, then
+   `npx remotion render Reel out/reel-zh.mp4 --props=reel-zh.json`. Captions
+   in Chinese or Japanese light up a character at a time. Re-time with
+   `/ig-transcribe`, and check the transcript: Whisper may answer in
+   Traditional characters for a Simplified script.
 7. Send the user the MP4.
 
 Offline, or when Remotion cannot download its browser, pass a local Chrome:
@@ -83,6 +94,8 @@ Offline, or when Remotion cannot download its browser, pass a local Chrome:
 
 - **Motion in frame one.** The hook card pops in from frame 0. Never open on a
   still title.
+- **Cards stay small and high.** About 60px, just under the top safe line,
+  so they never cover the subject of the shot.
 - **Safe zone.** Instagram puts the caption and the buttons over the bottom
   fifth and the right edge. Text stays in the middle band.
 - **No intro, no logo, no outro card.** The script's last line is the end.

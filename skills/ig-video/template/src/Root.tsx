@@ -11,10 +11,15 @@ export const Root: React.FC = () => (
     width={1080}
     height={1920}
     fps={data.fps}
-    // The video is as long as the last beat, so editing reel.json is enough.
-    durationInFrames={Math.ceil(
-      Math.max(...data.beats.map((b) => b.start + b.dur)) * data.fps,
-    )}
+    durationInFrames={1}
     defaultProps={data}
+    // The video is as long as the last beat, so editing reel.json is enough.
+    // --props=other.json renders a second version, e.g. another language.
+    calculateMetadata={({props}) => ({
+      fps: props.fps,
+      durationInFrames: Math.ceil(
+        Math.max(...props.beats.map((b) => b.start + b.dur)) * props.fps,
+      ),
+    })}
   />
 );

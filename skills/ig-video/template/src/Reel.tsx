@@ -9,6 +9,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
+import {FONT} from './font';
 import {scenes} from './scenes';
 
 export type Beat = {
@@ -18,7 +19,9 @@ export type Beat = {
   card?: string; // on-screen text, six words or fewer
   shot?: string; // what to film, shown until a clip is added
   clip?: string; // file in public/clips
-  scene?: string; // an animated scene from scenes.tsx, drawn over the background
+  scene?: string; // an animated scene from scenes.tsx, drawn over the background or clip
+  label?: string; // text a scene can show, e.g. a place name
+  labels?: string[]; // several, e.g. name tags over footage
 };
 
 export type ReelData = {
@@ -72,7 +75,7 @@ const Background: React.FC<{beat: Beat; color: string; index: number}> = ({
             right: SAFE_RIGHT,
             color: 'rgba(255,255,255,0.45)',
             fontSize: 30,
-            fontFamily: 'DejaVu Sans, sans-serif',
+            fontFamily: FONT,
             letterSpacing: 1,
           }}
         >
@@ -122,7 +125,7 @@ const Card: React.FC<{text: string; data: ReelData}> = ({text, data}) => {
     <div
       style={{
         position: 'absolute',
-        top: SAFE_TOP + 260,
+        top: SAFE_TOP + 20,
         left: 70,
         right: SAFE_RIGHT - 30,
         display: 'flex',
@@ -135,14 +138,15 @@ const Card: React.FC<{text: string; data: ReelData}> = ({text, data}) => {
           opacity: Math.min(1, pop * 2),
           background: data.colors.card,
           color: data.colors.text,
-          padding: '28px 44px',
+          padding: '18px 32px',
           borderRadius: 24,
-          fontSize: 92,
+          fontSize: 60,
           fontWeight: 900,
           lineHeight: 1.05,
           textAlign: 'center',
-          fontFamily: 'DejaVu Sans, sans-serif',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.45)',
+          fontFamily: FONT,
+          boxShadow: '0 12px 36px rgba(0,0,0,0.4)',
+          maxWidth: 760,
         }}
       >
         {text}
@@ -154,8 +158,10 @@ const Card: React.FC<{text: string; data: ReelData}> = ({text, data}) => {
 const Caption: React.FC<{text: string; data: ReelData}> = ({text, data}) => {
   const frame = useCurrentFrame();
   const {fps, durationInFrames} = useVideoConfig();
-  // Words light up in order across the beat, like spoken captions.
-  const words = text.split(' ');
+  // Words light up in order across the beat, like spoken captions. Chinese and
+  // Japanese have no spaces, so they light up a character at a time.
+  const words = text.includes(' ') ? text.split(' ') : Array.from(text);
+  const gap = text.includes(' ') ? ' ' : '';
   const progress = interpolate(frame, [0, durationInFrames - fps * 0.3], [0, words.length], {
     extrapolateRight: 'clamp',
   });
@@ -170,23 +176,23 @@ const Caption: React.FC<{text: string; data: ReelData}> = ({text, data}) => {
         fontSize: 54,
         fontWeight: 800,
         lineHeight: 1.25,
-        fontFamily: 'DejaVu Sans, sans-serif',
+        fontFamily: FONT,
         color: 'white',
         textShadow: '0 4px 14px rgba(0,0,0,0.9)',
       }}
     >
       {words.map((w, i) => (
         <span key={i} style={{color: i < progress ? data.colors.accent : 'white'}}>
-          {w}{' '}
+          {w}{gap}
         </span>
       ))}
     </div>
   );
 };
 
-const SceneView: React.FC<{name: string}> = ({name}) => {
-  const Scene = scenes[name];
-  return <Scene />;
+const SceneView: React.FC<{beat: Beat}> = ({beat}) => {
+  const Scene = scenes[beat.scene as string];
+  return <Scene beat={beat} />;
 };
 
 export const Reel: React.FC<ReelData> = (data) => {
@@ -202,7 +208,7 @@ export const Reel: React.FC<ReelData> = (data) => {
           durationInFrames={Math.round(beat.dur * fps)}
         >
           <Background beat={beat} index={i} color={data.colors.bg[i % data.colors.bg.length]} />
-          {beat.scene && scenes[beat.scene] ? <SceneView name={beat.scene} /> : null}
+          {beat.scene && scenes[beat.scene] ? <SceneView beat={beat} /> : null}
           {beat.card ? <Card text={beat.card} data={data} /> : null}
           <Caption text={beat.say} data={data} />
         </Sequence>
