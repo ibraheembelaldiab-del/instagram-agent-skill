@@ -90,6 +90,28 @@ Each beat in `reel.json`:
 Offline, or when Remotion cannot download its browser, pass a local Chrome:
 `npx remotion render Reel out/reel.mp4 --browser-executable=/path/to/chrome`.
 
+## Blocky 3D style
+
+`template-3d/` is a second look: a chain of floating, blocky islands in a
+pastel sky. The camera never cuts. It orbits each island while its line is
+spoken, then dives through to the next one. Signs are built from cubes with a
+5x7 pixel font and pop in letter by letter. Use it when the user wants a
+3D, toy-world or "Minecraft-style" reel. Never copy a game's look or assets:
+the style is blocks, pastel light and a flying camera, all drawn here.
+
+- `reel.json` has only the timings and words. One island per beat.
+- `src/islands.tsx` holds one small scene per beat, made of `Box`, `Cyl`,
+  `Ball`, `Slice`, `Plane`, `Island` and `PixelText` from `src/voxels.tsx`.
+  Write new islands for a new subject; keep each one to a few shapes that
+  show the line, plus one short sign (6 letters or fewer reads best).
+- `src/World.tsx` is the camera and the sky. Leave it alone unless the user
+  wants a different move.
+- Render with software 3D, which works on any machine:
+  `npx remotion render Reel3D out/reel-3d.mp4 --gl=swangle`. It is slower
+  than the flat template, so render a few stills first
+  (`npx remotion still Reel3D out/f.png --frame=60 --gl=swangle`) and check
+  that no sign is cut off and nothing sits in front of the subject.
+
 ## Rules
 
 - **Motion in frame one.** The hook card pops in from frame 0. Never open on a

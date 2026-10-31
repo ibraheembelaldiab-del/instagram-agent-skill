@@ -1,0 +1,73 @@
+{
+  "fps": 30,
+  "audio": "voiceover.wav",
+  "music": "music.wav",
+  "musicVolume": 0.12,
+  "beats": [
+    {
+      "start": 0.0,
+      "dur": 3.22,
+      "say": "Why do people fly to Shantou... for beef?"
+    },
+    {
+      "start": 3.22,
+      "dur": 3.68,
+      "say": "Because beef hotpot here isn't dinner. It's a sport!"
+    },
+    {
+      "start": 6.9,
+      "dur": 3.26,
+      "say": "The beef is cut fresh the same day. Never frozen."
+    },
+    {
+      "start": 10.16,
+      "dur": 1.88,
+      "say": "Every cut has its own name."
+    },
+    {
+      "start": 12.04,
+      "dur": 1.48,
+      "say": "Its own spot on the cow."
+    },
+    {
+      "start": 13.52,
+      "dur": 1.66,
+      "say": "And its own timer."
+    },
+    {
+      "start": 15.18,
+      "dur": 3.24,
+      "say": "Some get ten seconds in the broth. That's it!"
+    },
+    {
+      "start": 18.42,
+      "dur": 3.08,
+      "say": "Leave it in longer, and the whole table judges you."
+    },
+    {
+      "start": 21.5,
+      "dur": 3.86,
+      "say": "Then the beef balls. Pounded by hand, till they bounce!"
+    },
+    {
+      "start": 25.36,
+      "dur": 2.16,
+      "say": "Dip everything in shacha sauce."
+    },
+    {
+      "start": 27.52,
+      "dur": 1.28,
+      "say": "One bite... and you get it."
+    },
+    {
+      "start": 28.8,
+      "dur": 2.26,
+      "say": "Save this for your China trip."
+    },
+    {
+      "start": 31.06,
+      "dur": 1.96,
+      "say": "Trust me. You'd fly here too."
+    }
+  ]
+}
