@@ -30,14 +30,18 @@ MAX_WORDS = 7  # per caption line. Read on a phone, muted, in under 2 seconds.
 def chunk_words(words, max_words):
     """Group Whisper's timed words into caption lines, breaking at punctuation."""
     def ends(w):
-        return w["word"].strip()[-1:] in ".?!,"
+        return w["word"].strip()[-1:] in ".?!"
+
+    def pause(w, line):
+        # A comma only ends a line that is already long enough to read.
+        return w["word"].strip()[-1:] == "," and len(line) >= 3
 
     lines, cur = [], []
     for i, w in enumerate(words):
         cur.append(w)
         # Do not leave one or two words stranded on a line of their own.
         soon = any(ends(x) for x in words[i + 1 : i + 3])
-        if ends(w) or (len(cur) >= max_words and not soon):
+        if ends(w) or pause(w, cur) or (len(cur) >= max_words and not soon):
             lines.append(cur)
             cur = []
     if cur:

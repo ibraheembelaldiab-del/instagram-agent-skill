@@ -117,7 +117,9 @@ def main():
         reel["beats"] = [{**(old[i] if old else {}), **b} for i, b in enumerate(timings)]
         reel["audio"] = os.path.basename(args.out)
         json.dump(reel, open(args.reel, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
-        print(f"{args.reel}: timings updated. Put {args.out} in the project's public/ folder.")
+        print(f"{args.reel}: timings updated.")
+        if os.path.basename(os.path.dirname(os.path.abspath(args.out))) != "public":
+            print(f"Move {args.out} into the project's public/ folder before rendering.")
 
 
 if __name__ == "__main__":
