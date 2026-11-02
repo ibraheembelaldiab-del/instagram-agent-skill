@@ -29,22 +29,30 @@ const Caption: React.FC<{text: string}> = ({text}) => {
         left: 70,
         right: 160,
         textAlign: 'center',
-        fontSize: 52,
+        fontSize: spaced ? 52 : 46,
         fontWeight: 800,
         lineHeight: 1.25,
         fontFamily: FONT,
         color: 'white',
-        // Chinese strokes are dense, so a thick outline turns them to mud.
-        WebkitTextStroke: spaced ? '2px #5a1f3a' : '0.5px #5a1f3a',
-        textShadow: '0 4px 0 #5a1f3a, 0 8px 18px rgba(90,31,58,0.5)',
+        WebkitTextStroke: spaced ? '2px #5a1f3a' : undefined,
+        textShadow: spaced ? '0 4px 0 #5a1f3a, 0 8px 18px rgba(90,31,58,0.5)' : '0 2px 4px rgba(0,0,0,0.6)',
       }}
     >
+      {/* Chinese strokes are dense: a dark box reads cleaner than an outline. */}
+      <span
+        style={
+          spaced
+            ? undefined
+            : {background: 'rgba(30,12,24,0.62)', padding: '10px 22px', borderRadius: 18, boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone', lineHeight: 1.6}
+        }
+      >
       {words.map((w, i) => (
         <span key={i} style={{color: i < progress ? '#ffe066' : 'white'}}>
           {w}
           {spaced ? ' ' : ''}
         </span>
       ))}
+      </span>
     </div>
   );
 };
