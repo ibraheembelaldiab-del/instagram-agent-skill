@@ -3,6 +3,7 @@ import {Reel3D, type Reel3DData} from './Reel3D';
 import reel from '../reel.json';
 
 export const Root: React.FC = () => (
+  <>
   <Composition
     id="Reel3D"
     component={Reel3D}
@@ -16,4 +17,5 @@ export const Root: React.FC = () => (
       durationInFrames: Math.ceil(Math.max(...props.beats.map((b) => b.start + b.dur)) * props.fps),
     })}
   />
+  </>
 );

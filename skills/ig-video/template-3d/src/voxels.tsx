@@ -1,3 +1,4 @@
+import {DataTexture, NearestFilter, RGBAFormat, RepeatWrapping} from 'three';
 import {layout} from './pixelfont';
 
 // Small building blocks. Everything is a box, or a low-poly shape with flat
@@ -14,6 +15,34 @@ export const pop = (t: number, delay = 0, len = 0.35) => {
   return 1 + 2.7 * (x - 1) ** 3 + 1.7 * (x - 1) ** 2;
 };
 
+// A tiny noisy pixel texture, like the grain on a block in a block game.
+// One texture per repeat count, shared by every box of that size.
+const TEX = new Map<number, DataTexture>();
+const pixelTexture = (repeat: number) => {
+  const key = Math.min(80, Math.max(1, Math.round(repeat)));
+  const hit = TEX.get(key);
+  if (hit) return hit;
+  const N = 16;
+  const data = new Uint8Array(N * N * 4);
+  for (let i = 0; i < N * N; i++) {
+    const x = Math.sin(i * 12.9898) * 43758.5453;
+    const n = x - Math.floor(x);
+    // Mostly light grain, with the odd darker speck and a soft edge line.
+    const edge = i % N === 0 || i < N ? 0.86 : 1;
+    const v = Math.round(255 * edge * (n < 0.08 ? 0.72 : 0.84 + n * 0.16));
+    data.set([v, v, v, 255], i * 4);
+  }
+  const tex = new DataTexture(data, N, N, RGBAFormat);
+  tex.magFilter = NearestFilter;
+  tex.minFilter = NearestFilter;
+  tex.wrapS = RepeatWrapping;
+  tex.wrapT = RepeatWrapping;
+  tex.repeat.set(key, key);
+  tex.needsUpdate = true;
+  TEX.set(key, tex);
+  return tex;
+};
+
 export const Box: React.FC<{
   p?: V3;
   s?: V3;
@@ -21,19 +50,26 @@ export const Box: React.FC<{
   r?: V3;
   glow?: number;
   opacity?: number;
-}> = ({p = [0, 0, 0], s = [1, 1, 1], c, r = [0, 0, 0], glow = 0, opacity = 1}) => (
-  <mesh position={p} rotation={r}>
-    <boxGeometry args={s} />
-    <meshStandardMaterial
-      color={c}
-      flatShading
-      emissive={c}
-      emissiveIntensity={glow}
-      transparent={opacity < 1}
-      opacity={opacity}
-    />
-  </mesh>
-);
+}> = ({p = [0, 0, 0], s = [1, 1, 1], c, r = [0, 0, 0], glow = 0, opacity = 1}) => {
+  const big = Math.max(s[0], s[1], s[2]);
+  // Small trim pieces stay plain; anything a block or bigger gets grain.
+  const map = big >= 0.6 && glow === 0 && opacity === 1 ? pixelTexture(big / 1.2) : null;
+  return (
+    <mesh position={p} rotation={r} castShadow={opacity === 1} receiveShadow>
+      <boxGeometry args={s} />
+      <meshStandardMaterial
+        color={c}
+        map={map}
+        flatShading
+        roughness={0.9}
+        emissive={c}
+        emissiveIntensity={glow}
+        transparent={opacity < 1}
+        opacity={opacity}
+      />
+    </mesh>
+  );
+};
 
 export const Cyl: React.FC<{p?: V3; r1: number; r2?: number; h: number; c: string; seg?: number}> = ({
   p = [0, 0, 0],
@@ -66,7 +102,8 @@ export const PixelText: React.FC<{
   edge?: string;
   ry?: number;
   delay?: number;
-}> = ({text, t, p = [0, 0, 0], size = 0.35, c = '#fff6e5', edge = '#b8322a', ry = 0, delay = 0}) => {
+  glow?: number;
+}> = ({text, t, p = [0, 0, 0], size = 0.35, c = '#fff6e5', edge = '#b8322a', ry = 0, delay = 0, glow = 0}) => {
   const {pixels} = layout(text);
   return (
     <group position={p} rotation={[0, ry, 0]}>
@@ -75,7 +112,7 @@ export const PixelText: React.FC<{
         const bob = Math.sin(t * 5 + px.letter * 0.8) * 0.08;
         return (
           <group key={i} position={[px.x * size, px.y * size + bob, 0]} scale={k * px.s}>
-            <Box s={[size * 0.96, size * 0.96, size * 0.9]} c={c} />
+            <Box s={[size * 0.96, size * 0.96, size * 0.9]} c={c} glow={glow} />
             <Box p={[0, -size * 0.18, -size * 0.35]} s={[size, size, size * 0.4]} c={edge} />
           </group>
         );

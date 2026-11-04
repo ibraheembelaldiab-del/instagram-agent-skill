@@ -1,73 +1,101 @@
 {
-  "fps": 30,
-  "audio": "voiceover.wav",
-  "music": "music.wav",
-  "musicVolume": 0.12,
-  "beats": [
-    {
-      "start": 0.0,
-      "dur": 3.22,
-      "say": "Why do people fly to Shantou... for beef?"
-    },
-    {
-      "start": 3.22,
-      "dur": 3.68,
-      "say": "Because beef hotpot here isn't dinner. It's a sport!"
-    },
-    {
-      "start": 6.9,
-      "dur": 3.26,
-      "say": "The beef is cut fresh the same day. Never frozen."
-    },
-    {
-      "start": 10.16,
-      "dur": 1.88,
-      "say": "Every cut has its own name."
-    },
-    {
-      "start": 12.04,
-      "dur": 1.48,
-      "say": "Its own spot on the cow."
-    },
-    {
-      "start": 13.52,
-      "dur": 1.66,
-      "say": "And its own timer."
-    },
-    {
-      "start": 15.18,
-      "dur": 3.24,
-      "say": "Some get ten seconds in the broth. That's it!"
-    },
-    {
-      "start": 18.42,
-      "dur": 3.08,
-      "say": "Leave it in longer, and the whole table judges you."
-    },
-    {
-      "start": 21.5,
-      "dur": 3.86,
-      "say": "Then the beef balls. Pounded by hand, till they bounce!"
-    },
-    {
-      "start": 25.36,
-      "dur": 2.16,
-      "say": "Dip everything in shacha sauce."
-    },
-    {
-      "start": 27.52,
-      "dur": 1.28,
-      "say": "One bite... and you get it."
-    },
-    {
-      "start": 28.8,
-      "dur": 2.26,
-      "say": "Save this for your China trip."
-    },
-    {
-      "start": 31.06,
-      "dur": 1.96,
-      "say": "Trust me. You'd fly here too."
-    }
-  ]
+ "fps": 30,
+ "audio": "voice.wav",
+ "music": "music.wav",
+ "musicVolume": 0.14,
+ "beats": [
+  {
+   "say": "成都，是我最喜欢的地方。",
+   "sign": "成都",
+   "start": 0.0,
+   "dur": 2.092
+  },
+  {
+   "say": "因为，它们！",
+   "sign": "熊猫",
+   "start": 2.092,
+   "dur": 1.549
+  },
+  {
+   "say": "这是八十年代的成都。",
+   "sign": "1980",
+   "start": 3.641,
+   "dur": 1.691
+  },
+  {
+   "say": "看好了。",
+   "start": 5.332,
+   "dur": 2.626,
+   "same": true
+  },
+  {
+   "say": "这是现在的成都。",
+   "sign": "2026",
+   "start": 7.958,
+   "dur": 2.288,
+   "same": true
+  },
+  {
+   "say": "一样的火锅，",
+   "sign": "火锅",
+   "start": 10.246,
+   "dur": 1.23
+  },
+  {
+   "say": "一样在公园里打麻将的大爷，",
+   "sign": "麻将",
+   "start": 11.476,
+   "dur": 1.978
+  },
+  {
+   "say": "一样在山坡上打滚的熊猫。",
+   "sign": "打滚",
+   "start": 13.454,
+   "dur": 2.389
+  },
+  {
+   "say": "秋天的锦江边，枫叶一夜变红。",
+   "sign": "枫叶",
+   "start": 15.843,
+   "dur": 2.74
+  },
+  {
+   "say": "还有一片紫色花海，飞机就从头顶飞过！",
+   "sign": "花海",
+   "start": 18.583,
+   "dur": 3.653
+  },
+  {
+   "say": "成都还有自己的迪士尼……",
+   "sign": "迪士尼",
+   "start": 22.236,
+   "dur": 2.019
+  },
+  {
+   "say": "就是小区里的一台健身器，大家排队来坐！",
+   "sign": "排队",
+   "start": 24.256,
+   "dur": 3.472
+  },
+  {
+   "say": "城市变了，烟火气没变。",
+   "sign": "烟火气",
+   "start": 27.727,
+   "dur": 2.347
+  },
+  {
+   "say": "你会来成都吗？评论区告诉我！",
+   "sign": "?!",
+   "start": 30.075,
+   "dur": 2.831
+  },
+  {
+   "say": "谢谢你来看我。我们，下一个方块见！",
+   "start": 32.905,
+   "dur": 5.626
+  }
+ ],
+ "hook": "成都，凭什么让人不想走？",
+ "sfx": true,
+ "petals": true
 }

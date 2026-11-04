@@ -117,6 +117,45 @@ the style is blocks, pastel light and a flying camera, all drawn here.
   (`npx remotion still Reel3D out/f.png --frame=60 --gl=swangle`) and check
   that no sign is cut off and nothing sits in front of the subject.
 
+### The first 3 seconds (what the viral 3D explainers do)
+
+Studied from 3D and block-style explainers running 20x to 1,000x their
+account's median views:
+
+1. **Big hook text on screen from frame one.** Set `hook` in `reel.json`: a
+   question or a claim with a gap in it ("挂了1500年为什么不掉？", "If you
+   build a fortress at the bend of a mountain..."). It slams in with a shake
+   and leaves by 3 seconds. Under 14 Chinese characters or 8 English words.
+2. **Show the payoff first, explain after.** Open on the most impressive
+   shot (the temple on the cliff, the rebuilt city), never on a title card,
+   a logo or a slow establishing shot.
+3. **Voice and captions start on the first frame.** Most people watch muted.
+4. **Sound on every action.** `sfx` (on by default) adds a thud on the
+   hook, a whoosh into every new scene and a pop when a sign lands. The most
+   satisfying 3D videos live on these clicks and snaps.
+5. **Change something every 3 to 5 seconds**: a new scene, a camera move,
+   a sign popping. A scene longer than 5 seconds needs a second move inside it.
+6. **One open loop, paid off late.** The reaction format does this well:
+   the panda reacts in a corner (`pip.pause` = the line where the video
+   freezes), then comes to the middle and says "熊猫来解释".
+7. **End on a loop or a next-episode tease**, not a goodbye card.
+
+### What the 3D template can do
+
+- `same: true` on a line keeps it on the previous scene, so one island can
+  play out over several lines (a city rebuilding itself); scenes read
+  `marks` to know when each line starts.
+- `pip: {pause: N}`: the reacting panda in a circle, freeze and grey wash on
+  line N, the circle moves to the centre while he talks.
+- `petals: false` turns off the cherry-blossom stream between scenes.
+- Blocks have a pixel grain texture and cast real shadows. Keep big scenes
+  to a few hundred blocks, or renders get slow (a 60s detailed reel takes
+  about 40 minutes with `--gl=swangle`).
+- **Small fixes do not need a full render.** For a change in one part,
+  render only those frames (`--frames=120-300`) and splice them back with
+  ffmpeg. For colour or brightness, grade the finished MP4 with ffmpeg `eq`
+  instead of rendering again.
+
 ## Rules
 
 - **Motion in frame one.** The hook card pops in from frame 0. Never open on a
