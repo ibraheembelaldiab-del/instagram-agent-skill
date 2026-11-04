@@ -140,6 +140,24 @@ account's median views:
    freezes), then comes to the middle and says "熊猫来解释".
 7. **End on a loop or a next-episode tease**, not a goodbye card.
 
+### Building islands and placing the camera
+
+From sky-island builders, diorama makers and cinematography guides:
+
+- **Islands are organic, never square slabs.** The `Island` is a round,
+  uneven top over an underside that tapers to a jagged point, built from
+  small blocks: grass, then dirt, then stone that darkens with depth, with
+  moss creeping down and the odd ore speck. 3 to 5 shades per material.
+- **Leave sky around every island** so each reads as its own small world, and
+  keep other islands out of the camera's path to the next one.
+- **Open on a wide establishing shot**, then move in.
+- **Default to a diorama three-quarter view**: about 40 degrees off the front,
+  looking down about 25 degrees, pushing in slowly. Subject low in the frame,
+  sky above it for the sign.
+- **Use a low hero angle for huge things** (a mountain, a gate tower).
+- **Move with a reason, slowly**, and change angle by more than 35 degrees
+  from one shot to the next.
+
 ### What the 3D template can do
 
 - `same: true` on a line keeps it on the previous scene, so one island can

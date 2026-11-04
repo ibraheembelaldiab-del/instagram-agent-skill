@@ -1,5 +1,6 @@
 import {DataTexture, NearestFilter, RGBAFormat, RepeatWrapping} from 'three';
 import {layout} from './pixelfont';
+import {Voxelize, type Sdf} from './voxelize';
 
 // Small building blocks. Everything is a box, or a low-poly shape with flat
 // shading, so the whole world reads as one blocky toy set.
@@ -121,16 +122,68 @@ export const PixelText: React.FC<{
   );
 };
 
-// The floating chunk of land every scene sits on.
-export const Island: React.FC<{w?: number; top?: string}> = ({w = 14, top = '#8fd16a'}) => (
-  <group>
-    <Box p={[0, -0.5, 0]} s={[w, 1, w]} c={top} />
-    <Box p={[0, -2, 0]} s={[w - 1, 2, w - 1]} c="#9b6b43" />
-    <Box p={[0.5, -4, -0.5]} s={[w - 4, 2, w - 4]} c="#7d5534" />
-    <Box p={[-0.5, -5.8, 0.5]} s={[w - 8, 1.6, w - 8]} c="#6a6f7a" />
-    <Box p={[0, -7.2, 0]} s={[2, 1.2, 2]} c="#5a5f69" />
-  </group>
-);
+// The floating island every scene sits on: organic, layered, tapering to a point.
+const ISLAND_SHAPES = new Map<string, Sdf>();
+const islandShape = (w: number) => {
+  const key = String(w);
+  const hit = ISLAND_SHAPES.get(key);
+  if (hit) return hit;
+  const R = w * 0.53;
+  const depth = w * 0.95;
+  const sdf: Sdf = (x, y, z) => {
+    const a = Math.atan2(z, x);
+    // An uneven rim, so the top is never a perfect square or circle.
+    const rim = R * (0.9 + 0.08 * Math.sin(a * 3 + w) + 0.05 * Math.sin(a * 7 + 1.3) + 0.03 * Math.sin(a * 13));
+    const r = Math.hypot(x, z);
+    if (y > 0) return y;
+    if (y > -1.4) return r - rim;
+    // Below the soil the rock tapers, jagged, to a point.
+    const k = (-y - 1.4) / depth;
+    const jag = 0.12 * Math.sin(a * 5 + y * 0.9) + 0.08 * Math.sin(a * 11 - y * 1.7);
+    const radius = rim * Math.max(0, 1 - Math.pow(k, 0.75)) * (1 + jag);
+    return Math.max(r - radius, -y - 1.4 - depth);
+  };
+  ISLAND_SHAPES.set(key, sdf);
+  return sdf;
+};
+
+const GRASS = ['#79b84f', '#6aa645', '#84c25a', '#73b04b'];
+const DIRT = ['#8a6142', '#7a5539', '#94694a'];
+const STONE = ['#8f877c', '#7f786e', '#9a9286', '#736d64'];
+const paintIsland = (top: string) => (x: number, y: number, z: number) => {
+  const n = Math.sin(x * 12.9898 + y * 78.233 + z * 37.719) * 43758.5453;
+  const r = n - Math.floor(n);
+  if (y > -0.7) return top === '#8fd16a' ? GRASS[Math.floor(r * 4)] : r > 0.5 ? top : shade(top, 0.9);
+  if (y > -1.7) return r > 0.85 ? GRASS[1] : DIRT[Math.floor(r * 3)];
+  // Moss creeping down the upper rock, a few ore specks, and darker stone below.
+  if (y > -4 && r > 0.82) return '#5f9a3e';
+  if (r > 0.97) return '#c9a35a';
+  const depthShade = Math.max(0.55, 1 - (-y - 1.7) * 0.035);
+  return shade(STONE[Math.floor(r * 4)], depthShade);
+};
+const shade = (hex: string, k: number) => {
+  const v = parseInt(hex.slice(1), 16);
+  const ch = (sh: number) => Math.round(((v >> sh) & 255) * k);
+  return '#' + [ch(16), ch(8), ch(0)].map((c) => c.toString(16).padStart(2, '0')).join('');
+};
+const PAINTERS = new Map<string, (x: number, y: number, z: number) => string>();
+
+export const Island: React.FC<{w?: number; top?: string; falls?: boolean}> = ({w = 14, top = '#8fd16a', falls = false}) => {
+  const R = w * 0.6;
+  const step = 0.6;
+  if (!PAINTERS.has(top)) PAINTERS.set(top, paintIsland(top));
+  return (
+    <group>
+      <Voxelize sdf={islandShape(w)} min={[-R, -w * 0.95 - 1.6, -R]} max={[R, -step / 2, R]} step={step} paint={PAINTERS.get(top)!} />
+      {falls ? (
+        <>
+          <Box p={[w * 0.47, -6, w * 0.15]} s={[0.5, 12, 0.9]} c="#cfeaff" opacity={0.55} />
+          <Box p={[w * 0.46, -0.15, w * 0.15]} s={[0.7, 0.3, 1.2]} c="#9fd3ff" opacity={0.8} />
+        </>
+      ) : null}
+    </group>
+  );
+};
 
 export const Plane: React.FC<{p: V3; ry: number; rz?: number; scale?: number}> = ({p, ry, rz = 0, scale = 1}) => (
   <group position={p} rotation={[0, ry, rz]} scale={scale}>
