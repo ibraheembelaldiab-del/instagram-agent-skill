@@ -153,7 +153,7 @@ const STONE = ['#8f877c', '#7f786e', '#9a9286', '#736d64'];
 const paintIsland = (top: string) => (x: number, y: number, z: number) => {
   const n = Math.sin(x * 12.9898 + y * 78.233 + z * 37.719) * 43758.5453;
   const r = n - Math.floor(n);
-  if (y > -0.7) return top === '#8fd16a' ? GRASS[Math.floor(r * 4)] : r > 0.5 ? top : shade(top, 0.9);
+  if (y > -0.6) return top === '#8fd16a' ? GRASS[Math.floor(r * 4)] : r > 0.5 ? top : shade(top, 0.9);
   if (y > -1.7) return r > 0.85 ? GRASS[1] : DIRT[Math.floor(r * 3)];
   // Moss creeping down the upper rock, a few ore specks, and darker stone below.
   if (y > -4 && r > 0.82) return '#5f9a3e';
@@ -172,9 +172,12 @@ export const Island: React.FC<{w?: number; top?: string; falls?: boolean}> = ({w
   const R = w * 0.6;
   const step = 0.6;
   if (!PAINTERS.has(top)) PAINTERS.set(top, paintIsland(top));
+  // Line the grid up so the top layer sits exactly at the surface; otherwise
+  // the top blocks count as buried and the middle of the island goes missing.
+  const layers = Math.ceil((w * 0.95 + 1.6) / step);
   return (
     <group>
-      <Voxelize sdf={islandShape(w)} min={[-R, -w * 0.95 - 1.6, -R]} max={[R, -step / 2, R]} step={step} paint={PAINTERS.get(top)!} />
+      <Voxelize sdf={islandShape(w)} min={[-R, -step / 2 - layers * step, -R]} max={[R, -step / 2, R]} step={step} paint={PAINTERS.get(top)!} />
       {falls ? (
         <>
           <Box p={[w * 0.47, -6, w * 0.15]} s={[0.5, 12, 0.9]} c="#cfeaff" opacity={0.55} />

@@ -17,9 +17,15 @@ export const Voxelize: React.FC<{
   const ref = useRef<InstancedMesh>(null);
   const cells = useMemo(() => {
     const out: [number, number, number, string][] = [];
-    for (let x = min[0]; x <= max[0]; x += step)
-      for (let y = min[1]; y <= max[1]; y += step)
-        for (let z = min[2]; z <= max[2]; z += step) {
+    // Count whole steps instead of adding floats, so rounding never drops the
+    // last layer (the island tops went missing that way).
+    const n = [0, 1, 2].map((a) => Math.round((max[a] - min[a]) / step));
+    for (let ix = 0; ix <= n[0]; ix++)
+      for (let iy = 0; iy <= n[1]; iy++)
+        for (let iz = 0; iz <= n[2]; iz++) {
+          const x = min[0] + ix * step;
+          const y = min[1] + iy * step;
+          const z = min[2] + iz * step;
           if (sdf(x, y, z) > 0) continue;
           // Keep only blocks with an empty neighbour: the visible surface.
           let open = 0;
