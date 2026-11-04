@@ -148,6 +148,10 @@ account's median views:
 - `pip: {pause: N}`: the reacting panda in a circle, freeze and grey wash on
   line N, the circle moves to the centre while he talks.
 - `petals: false` turns off the cherry-blossom stream between scenes.
+- **Detailed hero objects** (a statue, a famous building): describe the shape
+  with distance functions and `src/voxelize.tsx` builds it from thousands of
+  small blocks with light and creases baked in. Use it for the one thing the
+  video is about; keep everything else in plain blocks so it stands out.
 - Blocks have a pixel grain texture and cast real shadows. Keep big scenes
   to a few hundred blocks, or renders get slow (a 60s detailed reel takes
   about 40 minutes with `--gl=swangle`).
