@@ -5,7 +5,7 @@ import type {PerspectiveCamera} from 'three';
 import {ISLANDS} from './islands';
 import {Box, Cloud, rand, type V3} from './voxels';
 
-export type Beat = {start: number; dur: number; say: string; sign?: string; labels?: string[]; same?: boolean; marks?: number[]};
+export type Beat = {start: number; dur: number; say: string; sign?: string; labels?: string[]; same?: boolean; marks?: number[]; chapter?: string};
 
 // Lines marked `same` stay on the island of the line before, so one island can
 // play out over several lines. `marks` tells it when each of those lines starts.

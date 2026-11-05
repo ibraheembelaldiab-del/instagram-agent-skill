@@ -148,6 +148,23 @@ const PauseLook: React.FC<{beats: Beat[]; pause: number}> = ({beats, pause}) => 
 };
 
 
+// A chapter tag at the top: a black "#01" badge and a yellow label, which
+// slide in when a new chapter starts and stay until the next one.
+const ChapterTag: React.FC<{text: string}> = ({text}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const t = frame / fps;
+  const [num, ...rest] = text.split(' ');
+  const inX = interpolate(t, [0, 0.25], [-700, 0], {extrapolateRight: 'clamp'});
+  const pop = interpolate(t, [0.2, 0.32, 0.45], [1, 1.12, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <div style={{position: 'absolute', top: 150, left: 56, display: 'flex', alignItems: 'center', gap: 18, transform: `translateX(${inX}px)`, fontFamily: FONT, fontWeight: 900}}>
+      <div style={{background: '#16141a', color: '#ffd23f', fontSize: 64, padding: '6px 24px', borderRadius: 18, transform: `scale(${pop})`, boxShadow: '0 6px 0 rgba(0,0,0,0.25)'}}>{num}</div>
+      <div style={{background: '#ffd23f', color: '#16141a', fontSize: 70, padding: '4px 26px', borderRadius: 10, boxShadow: '0 6px 0 rgba(0,0,0,0.25)'}}>{rest.join(' ')}</div>
+    </div>
+  );
+};
+
 // The hook title: slams in on frame one with a little shake, then gets out of the way.
 const HookCard: React.FC<{text: string}> = ({text}) => {
   const frame = useCurrentFrame();
@@ -236,6 +253,17 @@ export const Reel3D: React.FC<Reel3DData> = (data) => {
           <Caption text={b.say} />
         </Sequence>
       ))}
+      {data.beats.map((b, i) => {
+        if (!b.chapter) return null;
+        let last = i;
+        while (data.beats[last + 1]?.same) last++;
+        const end = data.beats[last].start + data.beats[last].dur;
+        return (
+          <Sequence key={`c${i}`} from={Math.round(b.start * fps)} durationInFrames={Math.max(1, Math.round((end - b.start) * fps))}>
+            <ChapterTag text={b.chapter} />
+          </Sequence>
+        );
+      })}
       {data.hook ? <HookCard text={data.hook} /> : null}
       {data.sfx !== false ? <Sfx beats={data.beats} /> : null}
       {data.audio ? <Audio src={staticFile(data.audio)} /> : null}
