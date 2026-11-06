@@ -106,7 +106,9 @@ export const Panda: React.FC<{
   shocked?: boolean;
   talk?: number;
   t?: number;
-}> = ({p = [0, 0, 0], ry = 0, s = 1, wave = 0, hop = 0, happy = false, shocked = false, talk = 0, t = 0}) => {
+  // Tongue out, for a burnt mouth.
+  tongue?: boolean;
+}> = ({p = [0, 0, 0], ry = 0, s = 1, wave = 0, hop = 0, happy = false, shocked = false, talk = 0, t = 0, tongue = false}) => {
   const ex = 0.46;
   const ey = 3.82;
   return (
@@ -161,6 +163,7 @@ export const Panda: React.FC<{
           <Box p={[0.11, 3.18, face(0.11, 3.18)]} s={[0.2, 0.05, 0.03]} c={K} r={[0, 0, 0.5]} />
         </>
       )}
+      {tongue ? <Box p={[0.04, 3.0 + Math.sin(t * 20) * 0.03, face(0, 3.0) + 0.06]} s={[0.24, 0.2, 0.1]} c="#ff5a6e" /> : null}
       {/* blush */}
       {[-0.82, 0.82].map((x) => (
         <Box key={`b${x}`} p={[x, 3.42, face(x, 3.42) - 0.03]} s={[0.28, 0.14, 0.02]} c={happy ? '#ff8fa8' : '#ffb3c1'} />

@@ -148,6 +148,21 @@ const PauseLook: React.FC<{beats: Beat[]; pause: number}> = ({beats, pause}) => 
 };
 
 
+// A fake ending: the picture dims, a big "完" fades in, and the next line
+// ("等等！还有一个！") breaks it.
+const FakeEnd: React.FC = () => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const t = frame / fps;
+  const k = interpolate(t, [0, 0.4], [0, 1], {extrapolateRight: 'clamp'});
+  return (
+    <AbsoluteFill style={{background: `rgba(10,8,14,${0.72 * k})`, alignItems: 'center', justifyContent: 'center'}}>
+      <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 240, color: '#ffffff', opacity: k, transform: `scale(${1.3 - 0.3 * k})`, letterSpacing: 20}}>完</div>
+      <div style={{fontFamily: FONT, fontWeight: 700, fontSize: 48, color: '#bbbbbb', opacity: k, marginTop: 10}}>THE END</div>
+    </AbsoluteFill>
+  );
+};
+
 // A chapter tag at the top: a black "#01" badge and a yellow label, which
 // slide in when a new chapter starts and stay until the next one.
 const ChapterTag: React.FC<{text: string}> = ({text}) => {
@@ -218,6 +233,16 @@ const Sfx: React.FC<{beats: Beat[]}> = ({beats}) => {
       <Sequence from={0} durationInFrames={Math.round(fps * 0.6)}>
         <Audio src={staticFile('sfx/thud.wav')} volume={0.55} />
       </Sequence>
+      <Sequence from={0} durationInFrames={Math.round(fps * 1.5)}>
+        <Audio src={staticFile('sfx/jingle.wav')} volume={0.32} />
+      </Sequence>
+      {beats.map((b, i) =>
+        b.punch !== undefined ? (
+          <Sequence key={`k${i}`} from={Math.round((b.start + b.punch) * fps)} durationInFrames={Math.round(fps * 0.6)}>
+            <Audio src={staticFile('sfx/thud.wav')} volume={0.45} />
+          </Sequence>
+        ) : null,
+      )}
       {heads.slice(1).map((b, i) => (
         <Sequence key={`w${i}`} from={Math.max(0, Math.round((b.start - 0.55) * fps))} durationInFrames={Math.round(fps * 0.7)}>
           <Audio src={staticFile('sfx/whoosh.wav')} volume={0.35} />
@@ -234,6 +259,17 @@ const Sfx: React.FC<{beats: Beat[]}> = ({beats}) => {
   );
 };
 
+// A quick zoom-in punch on the shocking moments: in fast, settle back.
+const punchScale = (beats: Beat[], now: number) => {
+  let s = 1;
+  for (const b of beats) {
+    if (b.punch === undefined) continue;
+    const d = now - (b.start + b.punch);
+    if (d > 0 && d < 0.5) s += 0.14 * (d < 0.08 ? d / 0.08 : Math.exp(-(d - 0.08) * 9));
+  }
+  return s;
+};
+
 export const Reel3D: React.FC<Reel3DData> = (data) => {
   const {fps, width, height} = useVideoConfig();
   const frame = useCurrentFrame();
@@ -243,9 +279,11 @@ export const Reel3D: React.FC<Reel3DData> = (data) => {
   const freezeAt = pz && now >= pz.start && now < pz.start + pz.dur ? pz.start : undefined;
   return (
     <AbsoluteFill>
-      <ThreeCanvas width={width} height={height} shadows camera={{fov: 50, near: 0.1, far: 400}}>
-        <World beats={data.beats} freezeAt={freezeAt} petals={data.petals ?? true} />
-      </ThreeCanvas>
+      <AbsoluteFill style={{transform: `scale(${punchScale(data.beats, now)})`}}>
+        <ThreeCanvas width={width} height={height} shadows camera={{fov: 50, near: 0.1, far: 600}}>
+          <World beats={data.beats} freezeAt={freezeAt} petals={data.petals ?? true} />
+        </ThreeCanvas>
+      </AbsoluteFill>
       {data.pip ? <PauseLook beats={data.beats} pause={data.pip.pause} /> : null}
       {data.pip ? <PandaCam beats={data.beats} pause={data.pip.pause} /> : null}
       {data.beats.map((b, i) => (
@@ -255,7 +293,7 @@ export const Reel3D: React.FC<Reel3DData> = (data) => {
       ))}
       {data.beats.map((b, i) => {
         if (!b.chapter) return null;
-        let last = i;
+                let last = i;
         while (data.beats[last + 1]?.same) last++;
         const end = data.beats[last].start + data.beats[last].dur;
         return (
@@ -264,6 +302,13 @@ export const Reel3D: React.FC<Reel3DData> = (data) => {
           </Sequence>
         );
       })}
+      {data.beats.map((b, i) =>
+        b.fakeEnd ? (
+          <Sequence key={`f${i}`} from={Math.round((b.start + 0.5) * fps)} durationInFrames={Math.max(1, Math.round((b.dur - 0.5) * fps))}>
+            <FakeEnd />
+          </Sequence>
+        ) : null,
+      )}
       {data.hook ? <HookCard text={data.hook} /> : null}
       {data.sfx !== false ? <Sfx beats={data.beats} /> : null}
       {data.audio ? <Audio src={staticFile(data.audio)} /> : null}

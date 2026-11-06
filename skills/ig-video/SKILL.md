@@ -218,3 +218,15 @@ cards:      8
 voice:      none (add with /ig-voiceover or /ig-transcribe)
 still need clips for: beats 1, 3, 4, 9, 11
 ```
+
+### Extra beat fields (3D template)
+
+- `punch: 0.4` — a quick zoom-in and a thud this many seconds into the line.
+  Use it on the two or three most shocking moments, not more.
+- `fakeEnd: true` — dims the picture and shows a big "完 / THE END" during
+  the line ("好了，就这些……"). Follow it with "等等！还有一个！" for the
+  bonus fact; it keeps people watching past the point they would leave.
+- `chapter: "#01 名字"` — the numbered tag at the top.
+- Every video opens with the Blocktrotter jingle (`public/sfx/jingle.wav`,
+  made by `tools/jingle.py`, original), the same each time so people
+  recognise the channel by ear.
