@@ -147,9 +147,14 @@ account's median views:
    craziest part…". Put it at the start of the line that opens the chapter.
 10. **Numbered chapters** for list videos: give the first beat of each part a
    `chapter` ("#01 城摞城") and a tag slides in at the top until the part ends.
-11. **End with comment-to-get.** "评论「开封」，我发你攻略！" brings far more
-   comments than a plain question. Write the guide before posting so the
-   creator can paste it as each reply.
+11. **End with a comment trigger, but never offer a travel guide on Douyin.**
+   On Instagram, "comment X and I'll send it to you" works. On Douyin, a
+   travel account saying "评论「洛阳」，我发你攻略" was flagged as
+   无资质营销旅游服务 (unlicensed travel solicitation) and hidden. For
+   Douyin and Xiaohongshu never write 攻略, 私信, 领, 发你, prices or
+   bookings in the voice, the captions or the pinned comment. End on a
+   question instead: "你觉得…吗？评论区告诉我！", "快@一个想去…的朋友！",
+   "下期去哪？评论区投票！".
 
 ### Building islands and placing the camera
 
