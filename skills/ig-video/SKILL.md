@@ -139,6 +139,17 @@ account's median views:
    the panda reacts in a corner (`pip.pause` = the line where the video
    freezes), then comes to the middle and says "熊猫来解释".
 7. **End on a loop or a next-episode tease**, not a goodbye card.
+8. **A verbal hook in the first spoken line**, not only on screen. Open on a
+   warning, a bet or a shock, never a plain fact: "千万别在开封随便挖地！",
+   "我赌你不知道…", "99%的人都去错了…", "Don't ever dig in this city…".
+9. **A teaser line at every chapter change**, so nobody swipes in the middle:
+   "更离谱的是…", "但这还不是最绝的…", "最后，这个一定要…", "But the
+   craziest part…". Put it at the start of the line that opens the chapter.
+10. **Numbered chapters** for list videos: give the first beat of each part a
+   `chapter` ("#01 城摞城") and a tag slides in at the top until the part ends.
+11. **End with comment-to-get.** "评论「开封」，我发你攻略！" brings far more
+   comments than a plain question. Write the guide before posting so the
+   creator can paste it as each reply.
 
 ### Building islands and placing the camera
 
