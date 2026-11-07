@@ -9,6 +9,7 @@ type Seg = {t: string; hl?: boolean; red?: boolean};
 type Card = {tag: string; num?: string; clock?: string; lines: Seg[][]; sub: string[]; src?: string; phone: number; gray?: boolean};
 
 import EP from './episode.json';
+import {Stage} from './Stage';
 const ZH = EP.zh as Card[];
 const EN = EP.en as Card[];
 const DUR: number[] = EP.dur;
@@ -140,6 +141,9 @@ const CardView: React.FC<{c: Card; tau: number; idx: number; en: boolean}> = ({c
           boxShadow: `0 0 ${140 + Math.sin(tau * 3) * 30}px 40px rgba(90,150,255,${0.25 + Math.sin(tau * 3) * 0.08})`,
         }}
       /> : null}
+      <div style={{opacity: outCubic((tau - 0.1) / 0.45), transform: `translateY(${(1 - outCubic((tau - 0.1) / 0.45)) * 60}px)`}}>
+        <Stage scene={idx} t={tau} en={en} />
+      </div>
       {c.src ? (
         <div style={{position: 'absolute', bottom: 120, left: 0, right: 0, textAlign: 'center', fontWeight: 700, fontSize: 34, color: '#6f7fb8', opacity: subP}}>{c.src}</div>
       ) : null}
