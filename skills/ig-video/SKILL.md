@@ -235,3 +235,13 @@ still need clips for: beats 1, 3, 4, 9, 11
 - Every video opens with the Blocktrotter jingle (`public/sfx/jingle.wav`,
   made by `tools/jingle.py`, original), the same each time so people
   recognise the channel by ear.
+
+### Export for upload
+
+Douyin and Instagram can clip the first and last moments of a video that
+starts and ends exactly on the voice, or whose audio track starts a hair
+before the picture. Always run the final file through
+`tools/safe_export.sh in.mp4 out.mp4`: it holds the first frame 0.4 s and the
+last frame 1.2 s, forces 30 fps with a keyframe at 0, re-encodes AAC audio,
+drops the edit list and moves the index to the front. Send the creator that
+file, not the raw render.
