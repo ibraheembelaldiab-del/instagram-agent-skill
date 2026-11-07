@@ -51,7 +51,7 @@ const hlTime = (c: Card) => {
   return LINE0 + Math.max(0, k) * LINE_GAP + 0.14;
 };
 
-const useFont = () => {
+export const useFont = () => {
   const [h] = useState(() => delayRender('fonts'));
   useEffect(() => {
     const el = document.createElement('style');
@@ -158,7 +158,7 @@ const CardView: React.FC<{c: Card; tau: number; idx: number; en: boolean}> = ({c
 };
 
 // Slow-drifting glow and a few rising specks, shared by every card.
-const Backdrop: React.FC<{t: number}> = ({t}) => (
+export const Backdrop: React.FC<{t: number}> = ({t}) => (
   <AbsoluteFill style={{background: 'linear-gradient(180deg,#070b1c 0%,#0d1430 55%,#0a0f22 100%)'}}>
     <AbsoluteFill style={{background: `radial-gradient(900px 700px at ${50 + Math.sin(t * 0.4) * 8}% ${62 + Math.cos(t * 0.3) * 4}%, rgba(80,140,255,.30), transparent 70%)`}} />
     {Array.from({length: 26}).map((_, i) => {
