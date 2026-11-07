@@ -3,6 +3,7 @@ import {Cards, TOTAL} from './Cards';
 import {Spec, SPEC_FRAMES} from './Spec';
 import {Sleep, SLEEP_FRAMES} from './Sleep';
 import {Procrast, PRO_FRAMES} from './Procrast';
+import {ProcrastEN, PRO_EN_FRAMES} from './ProcrastEN';
 
 export const Root: React.FC = () => (
   <>
@@ -11,5 +12,6 @@ export const Root: React.FC = () => (
     <Composition id="SpecZH" component={Spec} width={1080} height={1920} fps={30} durationInFrames={SPEC_FRAMES} />
     <Composition id="SleepZH" component={Sleep} width={1080} height={1920} fps={30} durationInFrames={SLEEP_FRAMES} />
     <Composition id="ProcrastZH" component={Procrast} width={1080} height={1920} fps={30} durationInFrames={PRO_FRAMES} />
+    <Composition id="ProcrastEN" component={ProcrastEN} width={1080} height={1920} fps={30} durationInFrames={PRO_EN_FRAMES} />
   </>
 );
