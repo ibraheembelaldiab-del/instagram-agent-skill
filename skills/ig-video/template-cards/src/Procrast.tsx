@@ -67,13 +67,14 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
         </div>
         <Body>
           <Big>
-            <Pop t={t} at={-0.2}>如果你</Pop>
-            <Pop t={t} at={LINES[1]}>越重要的事</Pop>
+            <Pop t={t} at={-0.2}>每5个成年人</Pop>
+            <Pop t={t} at={LINES[1]}>就有1个是</Pop>
             <Pop t={t} at={LINES[2]}>
-              越<Hl t={t} at={LINES[2]}>拖</Hl>
+              <Hl t={t} at={LINES[2]}>长期拖延者</Hl>
             </Pop>
           </Big>
-          <Mid t={t} at={LINES[3]} lines={['这不是懒。', '心理学研究发现，真正原因是这个 →']} />
+          <Mid t={t} at={LINES[3]} lines={['你是吗？这不是懒。', '心理学研究发现，真正原因是这个 →']} />
+          <Pop t={t} at={LINES[3] + 0.3} style={{fontWeight: 700, fontSize: 32, color: '#8090c8', marginTop: 18}}>研究：Ferrari 等, 2007</Pop>
         </Body>
         <Bedroom t={t} look={0} bubble={0} />
       </AbsoluteFill>

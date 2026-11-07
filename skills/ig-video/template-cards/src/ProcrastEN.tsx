@@ -67,13 +67,14 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
         </div>
         <Body>
           <Big>
-            <Pop t={t} at={-0.2}>If you put off</Pop>
-            <Pop t={t} at={LINES[1]}>what matters</Pop>
-            <Pop t={t} at={LINES[2]}>
-              <Hl t={t} at={LINES[2]}>the most</Hl>
+            <Pop t={t} at={-0.2}>1 in 5 adults</Pop>
+            <Pop t={t} at={LINES[1]}>
+              <Hl t={t} at={LINES[1]}>procrastinate</Hl>
             </Pop>
+            <Pop t={t} at={LINES[2]}>chronically.</Pop>
           </Big>
-          <Mid t={t} at={LINES[3]} lines={["It's not laziness.", 'Psychology found the real reason →']} />
+          <Mid t={t} at={LINES[3]} lines={["Are you one? It's not laziness.", 'Psychology found the real reason →']} />
+          <Pop t={t} at={LINES[3] + 0.3} style={{fontWeight: 700, fontSize: 30, color: '#8090c8', marginTop: 18}}>Research: Ferrari et al., 2007</Pop>
         </Body>
         <Bedroom t={t} look={0} bubble={0} />
       </AbsoluteFill>
