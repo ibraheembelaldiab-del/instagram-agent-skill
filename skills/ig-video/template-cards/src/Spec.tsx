@@ -10,13 +10,13 @@ export const SPEC_FRAMES = 25 * 30;
 const S2 = 12;
 const XF = 0.5; // crossfade between the scenes
 
-const clamp = (x: number) => Math.max(0, Math.min(1, x));
-const outCubic = (x: number) => 1 - (1 - clamp(x)) ** 3;
-const inOut = (x: number) => {
+export const clamp = (x: number) => Math.max(0, Math.min(1, x));
+export const outCubic = (x: number) => 1 - (1 - clamp(x)) ** 3;
+export const inOut = (x: number) => {
   const k = clamp(x);
   return k < 0.5 ? 4 * k ** 3 : 1 - (-2 * k + 2) ** 3 / 2;
 };
-const outBack = (x: number) => {
+export const outBack = (x: number) => {
   const c = 1.5;
   const k = clamp(x) - 1;
   return 1 + (c + 1) * k ** 3 + c * k ** 2;
@@ -24,11 +24,11 @@ const outBack = (x: number) => {
 // A soft zoom bump each time a line appears, settling smoothly (no shake).
 const bumps = (t: number, at: number[], size = 0.035) => at.reduce((s, a) => s + (t > a ? size * Math.sin(clamp((t - a) / 0.6) * Math.PI) * (1 - clamp((t - a) / 0.6) * 0.3) : 0), 0);
 
-const Pop: React.FC<{t: number; at: number; children: React.ReactNode; style?: React.CSSProperties}> = ({t, at, children, style}) => {
+export const Pop: React.FC<{t: number; at: number; children: React.ReactNode; style?: React.CSSProperties}> = ({t, at, children, style}) => {
   const p = outCubic((t - at) / 0.32);
   return <div style={{...style, opacity: p, transform: `translateY(${(1 - outBack((t - at) / 0.38)) * 60}px)`}}>{children}</div>;
 };
-const Hl: React.FC<{t: number; at: number; children: React.ReactNode}> = ({t, at, children}) => {
+export const Hl: React.FC<{t: number; at: number; children: React.ReactNode}> = ({t, at, children}) => {
   const w = outCubic((t - at - 0.1) / 0.28);
   return (
     <span style={{position: 'relative', display: 'inline-block', padding: '0 18px'}}>
@@ -170,7 +170,7 @@ const Scene2: React.FC<{u: number}> = ({u}) => {
   );
 };
 
-const At: React.FC<{t: number; f: string; v: number; len?: number}> = ({t, f, v, len = 1}) => {
+export const At: React.FC<{t: number; f: string; v: number; len?: number}> = ({t, f, v, len = 1}) => {
   const {fps} = useVideoConfig();
   return (
     <Sequence from={Math.max(0, Math.round(t * fps))} durationInFrames={Math.round(len * fps)}>
