@@ -89,7 +89,7 @@ const Scene1: React.FC<{t: number}> = ({t}) => {
 };
 
 // The viewer lying in bed in the dark, the phone floating above his face.
-const BedScene: React.FC<{t: number}> = ({t}) => {
+export const BedScene: React.FC<{t: number; asleep?: number}> = ({t, asleep = 0}) => {
   const pulse = 0.5 + 0.5 * Math.sin(t * 2.2);
   const breathe = Math.sin(t * 1.8) * 4;
   const ph = {x: 300, y: 1370 + Math.sin(t * 1.3) * 8};
@@ -108,19 +108,37 @@ const BedScene: React.FC<{t: number}> = ({t}) => {
         <rect x={140} y={1640} width={800} height={70} rx={20} fill="#1c2346" />
         <rect x={160} y={1575} width={170} height={70} rx={32} fill="#2c3664" />
         {/* light from the phone on his face */}
-        <circle cx={ph.x} cy={ph.y + 140} r={260} fill="url(#faceLight)" />
+        <circle cx={ph.x} cy={ph.y + 140} r={260} fill="url(#faceLight)" opacity={1 - asleep} />
         {/* the stick figure lying down: head on the pillow, body under the blanket */}
         <g stroke="#ffffff" strokeWidth={13} strokeLinecap="round" fill="none" style={{filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.35))'}}>
           <line x1={310} y1={1600 + breathe * 0.3} x2={760} y2={1612} />
           <circle cx={262} cy={1548 + breathe * 0.3} r={42} fill="#16204a" />
-          <circle cx={262} cy={1530 + breathe * 0.3} r={4} fill="#ffffff" stroke="none" />
-          <circle cx={286} cy={1536 + breathe * 0.3} r={4} fill="#ffffff" stroke="none" />
+          {asleep < 0.5 ? (
+            <>
+              <circle cx={262} cy={1530 + breathe * 0.3} r={4} fill="#ffffff" stroke="none" />
+              <circle cx={286} cy={1536 + breathe * 0.3} r={4} fill="#ffffff" stroke="none" />
+            </>
+          ) : (
+            <path d={`M252 ${1538 + breathe * 0.3} q8 6 16 0 M276 ${1542 + breathe * 0.3} q8 6 16 0`} strokeWidth={5} />
+          )}
         </g>
         <path d={`M 320 ${1640} C 360 ${1585 + breathe}, 520 ${1578 + breathe}, 700 ${1588 + breathe} C 820 1595, 900 1610, 935 1640 Z`} fill="#26305a" stroke="#3c4a86" strokeWidth={6} />
       </svg>
-      <div style={{position: 'absolute', left: ph.x - 70, top: ph.y - 125, transform: 'rotate(8deg)'}}>
-        <Phone t={t} w={140} h={250} />
-      </div>
+      {asleep < 1 ? (
+        <div style={{position: 'absolute', left: ph.x - 70, top: ph.y - 125 + asleep * 120, transform: `rotate(${8 + asleep * 70}deg)`, opacity: 1 - asleep}}>
+          <Phone t={t} w={140} h={250} />
+        </div>
+      ) : null}
+      {asleep > 0.6
+        ? [0, 1, 2].map((k) => {
+            const f = ((t * 0.5 + k / 3) % 1);
+            return (
+              <div key={k} style={{position: 'absolute', left: 300 + f * 120 + k * 10, top: 1430 - f * 220, fontWeight: 900, fontSize: 44 + k * 14, color: '#c9d4ff', opacity: (asleep - 0.6) * 2.5 * Math.sin(f * Math.PI)}}>
+                z
+              </div>
+            );
+          })
+        : null}
     </>
   );
 };

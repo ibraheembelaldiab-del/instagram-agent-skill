@@ -35,7 +35,7 @@ const Feed: React.FC<{t: number; speed?: number}> = ({t, speed = 160}) => (
 );
 
 // The viewer in bed at night. `look` 0 = head down at the phone, 1 = looking up at you.
-const Bedroom: React.FC<{t: number; look: number; bubble: number; en?: boolean}> = ({t, look, bubble}) => {
+export const Bedroom: React.FC<{t: number; look: number; bubble: number; en?: boolean}> = ({t, look, bubble}) => {
   const breathe = Math.sin(t * 2.2) * 3;
   const thumb = look < 0.5 ? Math.sin(t * 9) * 6 : 0;
   // joints

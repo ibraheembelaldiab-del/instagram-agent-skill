@@ -1,6 +1,7 @@
 import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Backdrop, useFont} from './Cards';
-import {At, Hl, Pop, clamp, inOut, outCubic} from './Spec';
+import {At, BedScene, Hl, Pop, clamp, inOut, outCubic} from './Spec';
+import {Bedroom} from './Stage';
 
 // 拖延, six scenes in 25 s, in the same style as the 睡前刷手机 video:
 // a check-style hook, then three research-backed truths with their sources.
@@ -74,7 +75,7 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
           </Big>
           <Mid t={t} at={LINES[3]} lines={['这不是懒。', '心理学研究发现，真正原因是这个 →']} />
         </Body>
-        <Phone t={t} opacity={0.9} />
+        <Bedroom t={t} look={0} bubble={0} />
       </AbsoluteFill>
     );
   }
@@ -163,12 +164,15 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
       </AbsoluteFill>
     );
   }
-  // The title returns, then everything fades to dark.
+  // The title returns; the viewer puts the phone away and falls asleep.
   return (
-    <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', transform: `scale(${1 + clamp(t / 3) * 0.05})`}}>
-      <Pop t={t} at={0.1} style={{fontWeight: 900, fontSize: 140, letterSpacing: 6}}>
+    <AbsoluteFill style={{transform: `scale(${1 + clamp(t / 3) * 0.04})`}}>
+      <Pop t={t} at={0.1} style={{position: 'absolute', top: 640, left: 0, right: 0, textAlign: 'center', fontWeight: 900, fontSize: 140, letterSpacing: 6}}>
         <Hl t={t} at={0.1}>拖延不是懒</Hl>
       </Pop>
+      <div style={{position: 'absolute', inset: 0, opacity: outCubic(t / 0.5), transform: 'translateY(-30px) scale(1.15)', transformOrigin: '540px 1620px'}}>
+        <BedScene t={t} asleep={inOut((t - 0.5) / 1.2)} />
+      </div>
     </AbsoluteFill>
   );
 };
