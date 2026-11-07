@@ -1,0 +1,17 @@
+{
+  "name": "shantou-3d",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render Reel3D out/reel-3d.mp4 --gl=swangle"
+  },
+  "dependencies": {
+    "@react-three/fiber": "9.1.2",
+    "@remotion/cli": "4.0.539",
+    "@remotion/three": "4.0.539",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.539",
+    "three": "0.170.0"
+  }
+}
