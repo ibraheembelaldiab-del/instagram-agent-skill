@@ -245,3 +245,23 @@ before the picture. Always run the final file through
 last frame 1.2 s, forces 30 fps with a keyframe at 0, re-encodes AAC audio,
 drops the edit list and moves the index to the front. Send the creator that
 file, not the raw render.
+
+## Text-card videos (no voice, no mascot)
+
+`template-cards/` makes silent-style explainer videos from `src/episode.json`
+(Chinese and English cards, one duration per card). Lines rise out of a blur,
+highlights wipe in, numbers spin in, and every card change is different
+(whip pan, zoom through, slide up, zoom out with a twist), each with its own
+sound; inside each card the camera reveals, pushes, drifts or pulls, with a
+zoom punch when the highlight lands. Fonts: copy the 700 and 900 files of
+`@fontsource/noto-sans-sc` into `public/fonts/`. Add calm original music with
+`tools/lofi.py out.wav SECONDS` and mix it under the sound effects; export with
+`tools/safe_export.sh`. Stills of each card's last moment, cropped to 3:4, are
+the Xiaohongshu carousel; cropped to 4:5, the Instagram carousel.
+
+What goes on the cards matters more than how they move:
+- **Real value only.** A surprising, research-backed truth people did not
+  know, that changes how they see themselves, plus one specific action they
+  can test. Never common sense everyone already knows but doesn't do.
+- **Name the source** in small text on the card (author and year).
+- **Frame one already shows the hook text.** Never open on an empty screen.
