@@ -4,6 +4,8 @@ import {Spec, SPEC_FRAMES} from './Spec';
 import {Sleep, SLEEP_FRAMES} from './Sleep';
 import {Procrast, PRO_FRAMES} from './Procrast';
 import {ProcrastEN, PRO_EN_FRAMES} from './ProcrastEN';
+import {Habit, HABIT_FRAMES} from './Habit';
+import {HabitEN, HABIT_EN_FRAMES} from './HabitEN';
 
 export const Root: React.FC = () => (
   <>
@@ -13,5 +15,7 @@ export const Root: React.FC = () => (
     <Composition id="SleepZH" component={Sleep} width={1080} height={1920} fps={30} durationInFrames={SLEEP_FRAMES} />
     <Composition id="ProcrastZH" component={Procrast} width={1080} height={1920} fps={30} durationInFrames={PRO_FRAMES} />
     <Composition id="ProcrastEN" component={ProcrastEN} width={1080} height={1920} fps={30} durationInFrames={PRO_EN_FRAMES} />
+    <Composition id="HabitZH" component={Habit} width={1080} height={1920} fps={30} durationInFrames={HABIT_FRAMES} />
+    <Composition id="HabitEN" component={HabitEN} width={1080} height={1920} fps={30} durationInFrames={HABIT_EN_FRAMES} />
   </>
 );
