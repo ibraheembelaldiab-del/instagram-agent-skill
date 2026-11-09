@@ -271,3 +271,13 @@ What goes on the cards matters more than how they move:
   stamp opening in `Habit.tsx` is kept as an alternative to A/B test, not the default.
 - **One strong, personal statistic per video**, best as the hook ("每5个成年人就有1个是长期拖延者，你是吗？"),
   with its source. More numbers than that feels like a lesson and people swipe.
+
+### Black-and-gold "knowledge showcase" style (`src/Elegant.tsx`)
+
+For the trending 话术 / psychology-trick format: black background with a warm
+gold glow, Noto Serif SC (copy the 400/700/900 files of `@fontsource/noto-serif-sc`
+into `public/serif/`), thin gold line drawings, chat bubbles that act out each
+trick with red ✕ / gold ✓ verdicts, bars that grow to the study's numbers, a
+chapter tag with progress segments, bottom subtitles, and a "YOUR CALL" ending
+(情商扣1 vs 心机扣2) that turns the comments into a vote. Only chart numbers a
+study actually reports; when it reports none, show a qualitative comparison.
