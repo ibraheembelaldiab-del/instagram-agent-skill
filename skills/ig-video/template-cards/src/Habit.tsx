@@ -129,7 +129,7 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
         <Body>
           <Num t={t} n="01" />
           <Big>
-            <Pop t={t} at={LINES[0]}>你每天43%的事</Pop>
+            <Pop t={t} at={LINES[0]}>每天43%的事</Pop>
             <Pop t={t} at={LINES[1]}>
               是<Hl t={t} at={LINES[1]}>自动驾驶</Hl>
             </Pop>
