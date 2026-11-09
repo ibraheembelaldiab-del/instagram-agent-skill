@@ -6,6 +6,7 @@ import {Procrast, PRO_FRAMES} from './Procrast';
 import {ProcrastEN, PRO_EN_FRAMES} from './ProcrastEN';
 import {Habit, HABIT_FRAMES} from './Habit';
 import {HabitEN, HABIT_EN_FRAMES} from './HabitEN';
+import {HabitSame, HABIT_SAME_FRAMES} from './HabitSame';
 
 export const Root: React.FC = () => (
   <>
@@ -17,5 +18,6 @@ export const Root: React.FC = () => (
     <Composition id="ProcrastEN" component={ProcrastEN} width={1080} height={1920} fps={30} durationInFrames={PRO_EN_FRAMES} />
     <Composition id="HabitZH" component={Habit} width={1080} height={1920} fps={30} durationInFrames={HABIT_FRAMES} />
     <Composition id="HabitEN" component={HabitEN} width={1080} height={1920} fps={30} durationInFrames={HABIT_EN_FRAMES} />
+    <Composition id="HabitSameZH" component={HabitSame} width={1080} height={1920} fps={30} durationInFrames={HABIT_SAME_FRAMES} />
   </>
 );
