@@ -56,27 +56,49 @@ const Body: React.FC<{children: React.ReactNode}> = ({children}) => <div style={
 // Each scene: its content, and where and how much the camera zooms.
 const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
   if (i === 0) {
-    const m = 47 + Math.min(4, Math.floor(t / 1.2));
-    const colon = Math.floor(t * 2) % 2 === 0;
+    // New entrance: a calendar of 21 days fills with checks, a red stamp
+    // slams onto it, and it stretches to 66 days. The viewer lies in bed below.
+    const STAMP = 1.5;
+    const GROW = 2.6;
+    const stampK = clamp((t - STAMP) / 0.22);
+    const g = inOut((t - GROW) / 1.1);
+    const n = Math.round(21 + g * 45);
+    const cols = g < 0.5 ? 7 : 11;
+    const cell = cols === 7 ? 110 : 68;
+    const gap = cols === 7 ? 16 : 10;
+    const filled = Math.min(21, Math.floor(t / 0.065));
+    const punch = t > STAMP ? Math.sin(clamp((t - STAMP) / 0.5) * Math.PI) * 0.06 : 0;
     return (
-      <AbsoluteFill style={{transform: `scale(${1 + clamp(t / 5) * 0.08})`, transformOrigin: '18% 30%'}}>
+      <AbsoluteFill style={{transform: `scale(${1 + punch + clamp(t / 5) * 0.04})`, transformOrigin: '50% 45%'}}>
         <Tag t={t} text="HABITS" />
-        <div style={{position: 'absolute', top: 260, right: 96, fontWeight: 900, fontSize: 110, color: '#ff5a6e', fontVariantNumeric: 'tabular-nums'}}>
-          23<span style={{opacity: colon ? 1 : 0.35}}>:</span>
-          {String(m).padStart(2, '0')}
+        <div style={{position: 'absolute', top: 260, left: 96, right: 60, fontWeight: 900, fontSize: 118, lineHeight: 1.25}}>
+          <Pop t={t} at={-0.25}>"21 days to</Pop>
+          <Pop t={t} at={0.15}>build a habit"?</Pop>
         </div>
-        <Body>
-          <Big>
-            <Pop t={t} at={-0.2}>43% of what</Pop>
-            <Pop t={t} at={LINES[1]}>you do daily</Pop>
-            <Pop t={t} at={LINES[2]}>
-              <Hl t={t} at={LINES[2]}>isn't a choice</Hl>
-            </Pop>
-          </Big>
-          <Mid t={t} at={LINES[3]} lines={["It's habit, running on autopilot.", 'Research shows how to change it →']} />
-          <Pop t={t} at={LINES[3] + 0.3} style={{fontWeight: 700, fontSize: 30, color: '#8090c8', marginTop: 18}}>Research: Wood et al., 2002</Pop>
-        </Body>
-        <Bedroom t={t} look={0} bubble={0} />
+        <div style={{position: 'absolute', top: 640, left: 96, width: 888, display: 'flex', flexWrap: 'wrap', gap}}>
+          {Array.from({length: n}).map((_, k) => {
+            const isNew = k >= 21;
+            const appear = isNew ? clamp((g * 45 - (k - 21)) / 3) : 1;
+            const done = k < filled && t < GROW + 0.2;
+            return (
+              <div key={k} style={{width: cell, height: cell, borderRadius: 12, background: done ? '#2f8a5a' : isNew ? 'rgba(255,210,63,0.22)' : 'rgba(255,255,255,0.1)', border: `3px solid ${isNew ? 'rgba(255,210,63,0.6)' : 'rgba(255,255,255,0.18)'}`, opacity: appear, transform: `scale(${0.6 + 0.4 * appear})`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 900, fontSize: cell * 0.5}}>
+                {done ? '✓' : ''}
+              </div>
+            );
+          })}
+        </div>
+        {t > STAMP ? (
+          <div style={{position: 'absolute', left: 540, top: 820, transform: `translate(-50%, -50%) rotate(-12deg) scale(${2.4 - 1.4 * stampK})`, opacity: stampK, border: '14px solid #ff3b4e', borderRadius: 26, padding: '6px 40px', color: '#ff3b4e', fontWeight: 900, fontSize: 150, letterSpacing: 10, background: 'rgba(10,12,30,0.55)', boxShadow: '0 0 40px rgba(255,59,78,0.45)', whiteSpace: 'nowrap'}}>
+            MYTH
+          </div>
+        ) : null}
+        <Pop t={t} at={GROW + 0.3} style={{position: 'absolute', top: 1150, left: 96, right: 60, fontWeight: 900, fontSize: 64}}>
+          It took <Hl t={t} at={GROW + 0.3}>66 days</Hl>
+        </Pop>
+        <Pop t={t} at={GROW + 0.7} style={{position: 'absolute', top: 1250, left: 96, fontWeight: 700, fontSize: 32, color: '#8090c8'}}>Research: Lally et al., 2010</Pop>
+        <div style={{position: 'absolute', inset: 0, transform: 'translateY(150px) scale(0.85)', transformOrigin: '540px 1700px'}}>
+          <BedScene t={t} />
+        </div>
       </AbsoluteFill>
     );
   }
@@ -107,12 +129,12 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
         <Body>
           <Num t={t} n="01" />
           <Big>
-            <Pop t={t} at={LINES[0]}>"21 days"</Pop>
+            <Pop t={t} at={LINES[0]}>43% of your day</Pop>
             <Pop t={t} at={LINES[1]}>
-              <Hl t={t} at={LINES[1]}>is a myth</Hl>
+              is <Hl t={t} at={LINES[1]}>autopilot</Hl>
             </Pop>
           </Big>
-          <Mid t={t} at={LINES[2]} lines={['It took 66 days on average,', 'anywhere from 18 to 254.']} />
+          <Mid t={t} at={LINES[2]} lines={["Not a choice. It's habit,", 'running on its own.']} />
         </Body>
         <Phone t={t} opacity={0.5 * (1 - out * 0.6)} y={out * 900} />
       </AbsoluteFill>
@@ -205,7 +227,7 @@ export const HabitEN: React.FC = () => {
       })}
       {/* research sources, pinned to the bottom so the zooms never push them away */}
       {[
-        [2, 'Research: Lally et al., 2010'],
+        [2, 'Research: Wood et al., 2002'],
         [3, 'Research: Lally et al., 2010'],
         [4, 'Research: Wood & Neal, 2007'],
       ].map(([i, text]) => {
@@ -233,6 +255,8 @@ export const HabitEN: React.FC = () => {
       {ticks.map((k) => (
         <At key={`k${k}`} t={k} f="tick.wav" v={0.3} len={0.2} />
       ))}
+      <At t={1.45} f="boom.wav" v={0.6} len={1} />
+      <At t={2.55} f="whoosh.wav" v={0.35} />
       <At t={BOUNDS[3] + 1.6} f="alarm.wav" v={0.45} len={1.3} />
       <At t={BOUNDS[5] + 0.3} f="chime.wav" v={0.5} len={2.6} />
     </AbsoluteFill>

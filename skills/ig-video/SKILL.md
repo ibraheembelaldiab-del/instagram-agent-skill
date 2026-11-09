@@ -265,5 +265,8 @@ What goes on the cards matters more than how they move:
   can test. Never common sense everyone already knows but doesn't do.
 - **Name the source** in small text on the card (author and year).
 - **Frame one already shows the hook text.** Never open on an empty screen.
+- **A different entrance every episode.** Never reuse the last opening: rotate
+  between a myth stamp ("21天养成习惯？" + a red 假的 stamp), a personal
+  statistic, a ticking clock, a check ("如果你…"), so returning viewers feel something new.
 - **One strong, personal statistic per video**, best as the hook ("每5个成年人就有1个是长期拖延者，你是吗？"),
   with its source. More numbers than that feels like a lesson and people swipe.
