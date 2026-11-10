@@ -294,3 +294,7 @@ your life -> sources + disclaimer). The series all use one song: 秋成《若如
 song; deliver a no-music export and have the creator add it from Douyin's
 library (selecting the full length), plus a version with the original 76 BPM
 lo-fi (`lofi.py` with BPM 76).
+For Instagram, translate every on-screen word (charts, bubbles, cards,
+labels), not only the subtitles (`src/VibeEN.tsx`), and wrap the 16:9 film in
+a 9:16 frame with a big hook title above it (`tools/reel-frame.html`: render
+to PNG, overlay the video at y=656, 1080x608).
