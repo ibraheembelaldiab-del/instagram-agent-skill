@@ -281,3 +281,16 @@ trick with red ✕ / gold ✓ verdicts, bars that grow to the study's numbers, a
 chapter tag with progress segments, bottom subtitles, and a "YOUR CALL" ending
 (情商扣1 vs 心机扣2) that turns the comments into a vote. Only chart numbers a
 study actually reports; when it reports none, show a qualitative comparison.
+
+### "Vibe 知识大赏" format (`src/Vibe.tsx`, 16:9)
+
+The trending Douyin knowledge-film format (one account: +780k followers in 20
+days): 1920x1080, about 2 minutes, no voice-over, Chinese subtitle with an
+English italic line under it at 85-91% height, five zones (signature, chapter
+tag, central animation, note band, subtitles), constant motion, six-part arc
+(cold hook on frame 0 -> real historical experiment -> mechanism -> twist ->
+your life -> sources + disclaimer). The series all use one song: 秋成《若如初见》
+(We Never Remix, "开智小曲"), slowed ~0.9x, about 76 BPM. Never embed that
+song; deliver a no-music export and have the creator add it from Douyin's
+library (selecting the full length), plus a version with the original 76 BPM
+lo-fi (`lofi.py` with BPM 76).
