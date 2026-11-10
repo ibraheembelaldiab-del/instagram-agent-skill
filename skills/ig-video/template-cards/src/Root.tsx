@@ -7,6 +7,7 @@ import {ProcrastEN, PRO_EN_FRAMES} from './ProcrastEN';
 import {Habit, HABIT_FRAMES} from './Habit';
 import {HabitEN, HABIT_EN_FRAMES} from './HabitEN';
 import {HabitSame, HABIT_SAME_FRAMES} from './HabitSame';
+import {HabitSameEN, HABIT_SAME_EN_FRAMES} from './HabitSameEN';
 import {Huashu, HUASHU_FRAMES} from './Huashu';
 import {HuashuEN, HUASHU_EN_FRAMES} from './HuashuEN';
 import {Elegant, ELEGANT_FRAMES} from './Elegant';
@@ -29,5 +30,6 @@ export const Root: React.FC = () => (
     <Composition id="ElegantEN" component={Elegant} width={1080} height={1920} fps={30} durationInFrames={ELEGANT_FRAMES} defaultProps={{lang: 'en' as const}} />
     <Composition id="BrandZH" component={ElegantBrand} width={1080} height={1920} fps={30} durationInFrames={BRAND_FRAMES} defaultProps={{lang: 'zh' as const}} />
     <Composition id="BrandEN" component={ElegantBrand} width={1080} height={1920} fps={30} durationInFrames={BRAND_FRAMES} defaultProps={{lang: 'en' as const}} />
+    <Composition id="HabitSameEN" component={HabitSameEN} width={1080} height={1920} fps={30} durationInFrames={HABIT_SAME_EN_FRAMES} />
   </>
 );

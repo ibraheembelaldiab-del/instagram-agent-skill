@@ -6,8 +6,8 @@ import {Bedroom} from './Stage';
 // 拖延, six scenes in 25 s, in the same style as the 睡前刷手机 video:
 // a check-style hook, then three research-backed truths with their sources.
 
-export const HABIT_SAME_FRAMES = 25 * 30;
-const BOUNDS = [0, 5, 8, 12, 17, 22, 25];
+export const HABIT_SAME_FRAMES = 20 * 30;
+const BOUNDS = [0, 3, 5.5, 9, 13, 17, 20];
 const XF = 0.45; // scene change: zoom out + crossfade
 const LINES = [0.1, 0.45, 0.8, 1.3]; // when each text block slides up
 
@@ -56,10 +56,12 @@ const Body: React.FC<{children: React.ReactNode}> = ({children}) => <div style={
 // Each scene: its content, and where and how much the camera zooms.
 const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
   if (i === 0) {
+    // the whole hook is already on screen on frame one
+    t = t + 1.4;
     const m = 47 + Math.min(4, Math.floor(t / 1.2));
     const colon = Math.floor(t * 2) % 2 === 0;
     return (
-      <AbsoluteFill style={{transform: `scale(${1 + clamp(t / 5) * 0.08})`, transformOrigin: '18% 30%'}}>
+      <AbsoluteFill style={{transform: `scale(${1 + clamp(t / 5) * 0.08 + Math.sin(clamp((t - 3.4) / 0.5) * Math.PI) * 0.06})`, transformOrigin: '18% 30%'}}>
         <Tag t={t} text="关于习惯" />
         <div style={{position: 'absolute', top: 260, right: 96, fontWeight: 900, fontSize: 110, color: '#ff5a6e', fontVariantNumeric: 'tabular-nums'}}>
           23<span style={{opacity: colon ? 1 : 0.35}}>:</span>
@@ -68,7 +70,7 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
         <Body>
           <Big>
             <Pop t={t} at={-0.2}>你每天做的事</Pop>
-            <Pop t={t} at={LINES[1]}>有43%</Pop>
+            <Pop t={t} at={LINES[1]}>有{Math.round(43 * outCubic((t - LINES[1]) / 0.8))}%</Pop>
             <Pop t={t} at={LINES[2]}>
               <Hl t={t} at={LINES[2]}>不是你决定的</Hl>
             </Pop>
@@ -77,6 +79,11 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
           <Pop t={t} at={LINES[3] + 0.3} style={{fontWeight: 700, fontSize: 32, color: '#8090c8', marginTop: 18}}>研究：Wood 等, 2002</Pop>
         </Body>
         <Bedroom t={t} look={0} bubble={0} />
+        {t > 2.7 ? (
+          <div style={{position: 'absolute', left: 470, top: 1250, padding: '14px 26px', borderRadius: 28, background: '#ffffff', color: '#16141a', fontWeight: 900, fontSize: 40, transform: `scale(${Math.min(1, (t - 2.7) / 0.25) * (1 + Math.sin(Math.min(1, (t - 2.7) / 0.4) * Math.PI) * 0.12)})`, transformOrigin: '0% 100%', boxShadow: '0 8px 24px rgba(0,0,0,0.35)'}}>
+            再刷5分钟…
+          </div>
+        ) : null}
       </AbsoluteFill>
     );
   }
@@ -147,7 +154,7 @@ const Scene: React.FC<{i: number; t: number}> = ({i, t}) => {
     );
   }
   if (i === 4) {
-    const z = 1 + inOut((t - 1.0) / 1.2) * 0.22;
+    const z = 1 + inOut((t - 1.0) / 1.2) * 0.22 + inOut((t - 3.3) / 0.9) * 0.08;
     return (
       <AbsoluteFill style={{transform: `scale(${z})`, transformOrigin: '36% 44%'}}>
         <Tag t={t} text="真相 3/3" />
@@ -183,7 +190,7 @@ export const HabitSame: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = frame / fps;
-  const fade = clamp((t - 23.6) / 1.2);
+  const fade = clamp((t - 18.8) / 1.0);
   const ticks: number[] = [];
   for (let k = 0.2; k < 5; k += 0.5) ticks.push(k);
   return (
@@ -233,6 +240,8 @@ export const HabitSame: React.FC = () => {
       {ticks.map((k) => (
         <At key={`k${k}`} t={k} f="tick.wav" v={0.3} len={0.2} />
       ))}
+      <At t={1.3} f="pop.wav" v={0.4} len={0.5} />
+      <At t={2.0} f="whip.wav" v={0.35} len={0.5} />
       <At t={BOUNDS[3] + 1.6} f="alarm.wav" v={0.45} len={1.3} />
       <At t={BOUNDS[5] + 0.3} f="chime.wav" v={0.5} len={2.6} />
     </AbsoluteFill>

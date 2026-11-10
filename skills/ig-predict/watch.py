@@ -56,21 +56,24 @@ def main():
         run = run + 1 if a < 0.2 else 0
         if run == 5:
             dead.append(i - 4)
-    # hold curve
+    # hold curve, calibrated on this creator's real Instagram retention for the
+    # habits reel (about 50% left at 2 s, 20% at 5 s, ~3% by 9 s)
     hold, h = [], 100.0
     for i, a in enumerate(attn):
-        base = 2.2 if i < 4 else 1.1  # people decide fastest at the start
-        h *= 1 - (base * (1.6 - a) / 100)
+        rate = 0.09 + 0.12 * (1 - a) + (0.03 if i < 4 else 0)
+        h *= 1 - rate
         hold.append(h)
     dur = n / FPS
     first = attn[:2].mean()
     hook_score = int(round(100 * min(1, first * 1.2)))
     dead_s = sum(1 for a in attn if a < 0.2) * 0.5
     hold_end = hold[-1]
-    score = int(round(0.4 * hook_score + 0.35 * min(100, hold_end * 1.25) + 0.25 * max(0, 100 - dead_s * 8)))
+    hold3 = hold[min(5, len(hold) - 1)]
+    hold5 = hold[min(9, len(hold) - 1)]
+    score = int(round(0.4 * hook_score + 0.4 * min(100, hold5 * 3) + 0.2 * max(0, 100 - dead_s * 8)))
     print(f'\n{path.split("/")[-1]}: {dur:.1f}s')
     print(f'  Hook (first second):   {hook_score}/100')
-    print(f'  Estimated hold at end: {hold_end:.0f}%')
+    print(f'  Est. still watching:   {hold3:.0f}% at 3s, {hold5:.0f}% at 5s, {hold_end:.0f}% at the end')
     print(f'  Quiet time:            {dead_s:.1f}s')
     if dead:
         print('  Dead zones (2.5s+ with nothing new): ' + ', '.join(f'{d * 0.5:.1f}s' for d in dead))

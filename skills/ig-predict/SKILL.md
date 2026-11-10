@@ -34,3 +34,10 @@ hold curve and lists dead zones. Report both scores together, and fix the red
 stretches before sending a video. Needs numpy and matplotlib.
 Note: `safe_export.sh` holds the first frame for 0.4 s, which reads as low
 motion; judge the hook on the render before the safe export.
+
+Calibration (real Instagram data, habits reel, 26 s): about 50% still watching
+at 2 s, 20% at 5 s, almost nobody after 9 s. The cover frame showed only half
+of the hook because the lines were still animating in. Lessons now in the
+rules: the whole hook must be readable on frame one, the first tip must arrive
+by 3 s, and 20 s is the ceiling. watch.py cannot read text, so it cannot see a
+half-written hook: always check frame 0 by eye.
