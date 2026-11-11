@@ -298,3 +298,11 @@ For Instagram, translate every on-screen word (charts, bubbles, cards,
 labels), not only the subtitles (`src/VibeEN.tsx`), and wrap the 16:9 film in
 a 9:16 frame with a big hook title above it (`tools/reel-frame.html`: render
 to PNG, overlay the video at y=656, 1080x608).
+
+### Instagram-only rules (not Douyin)
+
+From a 2026 algorithm breakdown the creator shared (Loa Vert, @artgrowthclub):
+aim for a flat retention curve and a skip rate under 30-40%; 30-45 s reels do
+best, a 1-2 min film should be cut down for Instagram (hook + key data + twist
++ vote); no hashtags, use searchable keywords and a longer caption instead;
+display name = name + niche, keyword-rich bio. Keep Douyin on its own rules.
