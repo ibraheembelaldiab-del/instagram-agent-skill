@@ -321,3 +321,10 @@ light up word by word. Built as `src/Story.tsx`: script in
 `tools/story_voice.py` (edge-tts with word timings, retries because the
 service drops requests), music from `tools/piano.py`. Douyin's trend at the
 same time was the 2-minute no-voice Vibe film (`src/Vibe.tsx`).
+
+Voice: edge-tts sounds obviously AI in Chinese. Use vidIQ voiceover
+(ElevenLabs) "James Gao - Calm, Friendly and Warm" (standard Mandarin, male,
+narrative) with `scriptLines`, one line per scene; then
+`tools/sync_voice_lines.py` trims each line, adds the gaps and rescales the
+edge-tts word timings onto it for the word-by-word captions. Cost: 28 vidIQ
+credits for ~280 characters (rounded up per 1000).
