@@ -15,6 +15,7 @@ import {ElegantBrand, BRAND_FRAMES} from './ElegantBrand';
 import {Vibe, VIBE_FRAMES} from './Vibe';
 import {Spot, SPOT_FRAMES} from './Spot';
 import {SpotEN, SPOT_EN_FRAMES} from './SpotEN';
+import {Story, STORY_FRAMES} from './Story';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -39,5 +40,6 @@ export const Root: React.FC = () => (
     <Composition id="VibeEN" component={VibeEN} width={1920} height={1080} fps={30} durationInFrames={VIBE_EN_FRAMES} />
     <Composition id="SpotZH" component={Spot} width={1080} height={1920} fps={30} durationInFrames={SPOT_FRAMES} />
     <Composition id="SpotEN" component={SpotEN} width={1080} height={1920} fps={30} durationInFrames={SPOT_EN_FRAMES} />
+    <Composition id="Story" component={Story} width={1080} height={1920} fps={30} durationInFrames={STORY_FRAMES} />
   </>
 );

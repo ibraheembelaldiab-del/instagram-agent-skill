@@ -306,3 +306,18 @@ aim for a flat retention curve and a skip rate under 30-40%; 30-45 s reels do
 best, a 1-2 min film should be cut down for Instagram (hook + key data + twist
 + vote); no hashtags, use searchable keywords and a longer caption instead;
 display name = name + niche, keyword-rich bio. Keep Douyin on its own rules.
+
+### The rule above all rules: follow what is getting numbers today
+
+The creator does not want a fixed house style. Before each new video, check
+what is actually outperforming right now (vidIQ `instagram_tiktok_outlier_search`,
+ranked by outlier multiple) and copy that pattern; the brand (colours, the
+stick-figure viewer, Brain Manual) is the only thing that stays.
+
+Snapshot, November 2026, psychology niche (IG + TikTok outliers, 6x-997x):
+60-75 s, calm voice-over, soft piano, a simple white/wireframe figure on a
+dark background, a "why do you do this?" everyday behaviour, captions that
+light up word by word. Built as `src/Story.tsx`: script in
+`tools/story_voice.py` (edge-tts with word timings, retries because the
+service drops requests), music from `tools/piano.py`. Douyin's trend at the
+same time was the 2-minute no-voice Vibe film (`src/Vibe.tsx`).
