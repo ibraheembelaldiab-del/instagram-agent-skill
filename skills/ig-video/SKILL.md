@@ -328,3 +328,9 @@ narrative) with `scriptLines`, one line per scene; then
 `tools/sync_voice_lines.py` trims each line, adds the gaps and rescales the
 edge-tts word timings onto it for the word-by-word captions. Cost: 28 vidIQ
 credits for ~280 characters (rounded up per 1000).
+
+Shock first (Douyin data, spotlight video: 48% gone by 2 s, 20% left at 5 s,
+far below similar videos): the first spoken line is the surprising claim, not
+a story setup ("吵架时突然不说话的人，不一定是冷漠。可能是他的心跳已经超过了100"),
+and frame one already shows the tension (the silent figure, heart at 112 BPM).
+`src/Fight.tsx` is the example.

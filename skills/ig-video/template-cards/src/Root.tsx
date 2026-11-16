@@ -17,6 +17,7 @@ import {Spot, SPOT_FRAMES} from './Spot';
 import {SpotEN, SPOT_EN_FRAMES} from './SpotEN';
 import {Story, STORY_FRAMES} from './Story';
 import {StoryZH, STORY_ZH_FRAMES} from './StoryZH';
+import {Fight, FIGHT_EN_FRAMES, FIGHT_ZH_FRAMES} from './Fight';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -43,5 +44,7 @@ export const Root: React.FC = () => (
     <Composition id="SpotEN" component={SpotEN} width={1080} height={1920} fps={30} durationInFrames={SPOT_EN_FRAMES} />
     <Composition id="Story" component={Story} width={1080} height={1920} fps={30} durationInFrames={STORY_FRAMES} />
     <Composition id="StoryZH" component={StoryZH} width={1080} height={1920} fps={30} durationInFrames={STORY_ZH_FRAMES} />
+    <Composition id="FightEN" component={Fight} width={1080} height={1920} fps={30} durationInFrames={FIGHT_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
+    <Composition id="FightZH" component={Fight} width={1080} height={1920} fps={30} durationInFrames={FIGHT_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
   </>
 );
