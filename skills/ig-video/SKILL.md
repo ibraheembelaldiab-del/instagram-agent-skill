@@ -334,3 +334,13 @@ far below similar videos): the first spoken line is the surprising claim, not
 a story setup ("吵架时突然不说话的人，不一定是冷漠。可能是他的心跳已经超过了100"),
 and frame one already shows the tension (the silent figure, heart at 112 BPM).
 `src/Fight.tsx` is the example.
+
+Music for voice-over videos: soft piano alone was "boring to hear". Use
+`tools/cinematic.py out.wav beats.json "<reveal beats>" <warm-from beat>`:
+a 90 bpm forward pulse, minor-key piano motif, pad, soft clock tick, a low
+hit on every scene change, a riser into each reveal, warmer chords for the
+resolution. Mix it with sidechain ducking under the voice
+(`sidechaincompress=threshold=0.03:ratio=5`). Also export a voice-only copy
+so the creator can add the trending in-app song (Nov 2026: "Futile Devices",
+Sufjan Stevens, for reflective psychology content; Douyin: 若如初见/开智小曲)
+at about 15% volume. Never put a licensed song in the file itself.

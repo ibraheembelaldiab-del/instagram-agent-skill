@@ -241,7 +241,7 @@ const Captions: React.FC<{t: number; B: Beat[]; zh: boolean}> = ({t, B, zh}) => 
   );
 };
 
-export const Fight: React.FC<{lang: 'en' | 'zh'}> = ({lang}) => {
+export const Fight: React.FC<{lang: 'en' | 'zh'; music?: boolean}> = ({lang, music = true}) => {
   useFont();
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -271,7 +271,7 @@ export const Fight: React.FC<{lang: 'en' | 'zh'}> = ({lang}) => {
       </div>
       <AbsoluteFill style={{background: '#000', opacity: fade}} />
       <Audio src={staticFile(`fight/${lang}-voice.wav`)} />
-      <Audio src={staticFile(`fight/${lang}-piano.wav`)} volume={0.12} />
+      {music ? <Audio src={staticFile(`fight/${lang}-piano.wav`)} volume={0.12} /> : null}
       {B.slice(1).map((bb, k) => (
         <Sequence key={k} from={Math.max(0, Math.round((bb.start - 0.25) * fps))} durationInFrames={Math.round(0.8 * fps)}>
           <Audio src={staticFile('sfx/whoosh.wav')} volume={0.12} />
