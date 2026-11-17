@@ -351,3 +351,9 @@ phonk style: hard kick, gliding 808, clap, rolling hats, cowbell riff, bell
 lead; full energy from frame one; half a second of silence then an impact
 before each reveal). Mix at volume 0.4 with sidechain ducking (ratio 4) so
 the voice still cuts through, final loudness -13 LUFS.
+
+Update 2: the creator chose "more emotional" over the plain hard beat. Use
+`tools/trailer.py out.wav beats.json "<reveals>" <warm-from>`: a trailer-style
+score (92 bpm staccato string ostinato, low toms, aching piano melody, swelling
+strings that grow through the story, silence + riser + boom before reveals,
+warm major-key lift for the resolution). Mix at volume 0.6 with ducking.
