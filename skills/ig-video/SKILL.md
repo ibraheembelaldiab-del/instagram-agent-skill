@@ -357,3 +357,10 @@ Update 2: the creator chose "more emotional" over the plain hard beat. Use
 score (92 bpm staccato string ostinato, low toms, aching piano melody, swelling
 strings that grow through the story, silence + riser + boom before reveals,
 warm major-key lift for the resolution). Mix at volume 0.6 with ducking.
+
+Update 3: the creator judged every code-synthesised track (piano, lo-fi,
+cinematic, hype, trailer) "so bad". Do not synthesise music in code any more.
+Use real music: vidIQ `generate_music` (25 credits per track, ~60 s,
+royalty-free WAV; prompt with genre + mood + instruments + tempo +
+"instrumental"), normalised to -24 LUFS and ducked under the voice; or a
+voice-only export plus a trending song added inside the app.
