@@ -344,3 +344,10 @@ resolution. Mix it with sidechain ducking under the voice
 so the creator can add the trending in-app song (Nov 2026: "Futile Devices",
 Sufjan Stevens, for reflective psychology content; Douyin: 若如初见/开智小曲)
 at about 15% volume. Never put a licensed song in the file itself.
+
+Update: the creator wants music that grabs attention, not calm beds. Default to
+`tools/hype.py out.wav beats.json "<reveal beats>"` (140 bpm dark-psychology /
+phonk style: hard kick, gliding 808, clap, rolling hats, cowbell riff, bell
+lead; full energy from frame one; half a second of silence then an impact
+before each reveal). Mix at volume 0.4 with sidechain ducking (ratio 4) so
+the voice still cuts through, final loudness -13 LUFS.
