@@ -364,3 +364,18 @@ Use real music: vidIQ `generate_music` (25 credits per track, ~60 s,
 royalty-free WAV; prompt with genre + mood + instruments + tempo +
 "instrumental"), normalised to -24 LUFS and ducked under the voice; or a
 voice-only export plus a trending song added inside the app.
+
+### Diagnose with the numbers (Amelia Gonzamonte's framework)
+
+low views + good engagement = packaging problem (cover, first frame, first 3 s);
+high views + low engagement = connection problem; low + low = idea problem;
+high + high but no follows/leads = positioning problem.
+
+Silent-in-a-fight episode, Nov 17 2026: IG 304 views, 45.8% skip, 8 s average
+of 54 s, but like 3.7%, save 1.8%, repost 2.6% (good) and 0 comments; Douyin
+56.6% 2 s bounce, 21.7% at 5 s, 4 s average. Verdict: packaging. Fixes, now
+rules: frame 0 shows the whole hook as big text (word-by-word captions left
+the cover reading "People who go"); a big close-up of the figure's emotion,
+not two tiny figures; 25 s and two points max; one curiosity gap; an easy
+comment prompt early ("打1或2"); Douyin itself recommends openings with a real
+face, so offer the creator a 2-second silent reaction shot of himself.
