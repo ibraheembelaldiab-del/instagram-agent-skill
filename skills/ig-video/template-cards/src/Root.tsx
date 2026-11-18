@@ -21,6 +21,7 @@ import {Fight, FIGHT_EN_FRAMES, FIGHT_ZH_FRAMES} from './Fight';
 import {Fight2, FIGHT2_EN_FRAMES, FIGHT2_ZH_FRAMES} from './Fight2';
 import {Phantom, PHANTOM_EN_FRAMES, PHANTOM_ZH_FRAMES} from './Phantom';
 import {Door, DOOR_EN_FRAMES, DOOR_ZH_FRAMES} from './Door';
+import {Night, NIGHT_FRAMES} from './Night';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -55,5 +56,6 @@ export const Root: React.FC = () => (
     <Composition id="PhantomZH" component={Phantom} width={1080} height={1920} fps={30} durationInFrames={PHANTOM_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
     <Composition id="DoorEN" component={Door} width={1080} height={1920} fps={30} durationInFrames={DOOR_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
     <Composition id="DoorZH" component={Door} width={1080} height={1920} fps={30} durationInFrames={DOOR_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
+    <Composition id="Night" component={Night} width={1920} height={1080} fps={30} durationInFrames={NIGHT_FRAMES} />
   </>
 );
