@@ -397,3 +397,31 @@ The user wants fast talk with no pauses between sentences: fast speech keeps peo
 Rules:
 - Right after the hook, give point 1 (the surprising fact) straight away. No naming it and no "comment a number" there.
 - Put the comment ask after point 1, or show it only as on-screen text while the voice keeps going.
+
+## Viral reference: 持续努力看似毫无进展 (1.4M+ views, Douyin)
+
+What it is: a 3.5-minute horizontal (16:9) video with no voiceover at all, only music and on-screen subtitle narration.
+
+Visuals:
+- Dark purple background with thin glowing lines and one glowing dot.
+- Minimal motion graphics: charts, keyboards, a tiny staircase.
+- A serif title card for each section.
+- Colored keywords in the subtitles: red for the problem, green for the answer, purple for the research term.
+
+Topic: a pain point almost everyone has (working hard but not improving), not trivia.
+
+Script chain:
+1. Relatable examples: 美剧三个月听不懂, 刷题分不涨.
+2. A 1897 study (Bryan & Harter telegraph plateau).
+3. Why the plateau happens (chunking).
+4. "You can't feel a breakthrough coming" (insight-problem study).
+5. A test: practice that feels smooth vs practice that feels hard. Example numbers: 89%/60% during practice became 20%/63% a week later (interleaving).
+6. Ericsson's 刻意练习.
+7. A reflective question at the end: 是在积累，还是在原地打转？
+8. A reference list card.
+
+Lessons:
+- On Douyin, deep and calm can beat short and loud when the topic hits a personal struggle.
+- No voice is needed. Text plus music is enough, which also removes the TTS cost and the AI-voice problem.
+- Every claim has a study behind it.
+- Copy the format (pattern), never the video's look one to one.
