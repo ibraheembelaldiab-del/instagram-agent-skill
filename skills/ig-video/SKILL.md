@@ -387,3 +387,13 @@ The user wants fast talk with no pauses between sentences: fast speech keeps peo
 - Build every voice with `tools/tight.py <dir> <mp3prefix> <beats.json> 1.2 0.12`. It trims the edges, cuts inside pauses to 0.12s, speeds up 1.2x (pitch kept) and puts a 0.12s gap between lines.
 - Then run `tools/align.py <dir> <lang>` (whisper, no initial_prompt) to re-time the captions to the real audio. Copy `q_voice.wav` and `q_beats.json` into the Remotion project.
 - Target length: about 25s for 2 points.
+
+## Update: phantom vibration stats (Douyin)
+
+- Stats: 2s bounce 33.8%, the best so far (was 56.6% and then 48%). 5s retention 33.5%. Average watch 6s of 25s. Comment rate 0.34%.
+- Retention matched similar videos until 4s, then dropped below them at 4–5s.
+- That drop is where beat 1 gave the name ("这叫幻震综合征") and asked for a comment. That delayed the payoff, so viewers left.
+
+Rules:
+- Right after the hook, give point 1 (the surprising fact) straight away. No naming it and no "comment a number" there.
+- Put the comment ask after point 1, or show it only as on-screen text while the voice keeps going.
