@@ -19,6 +19,7 @@ import {Story, STORY_FRAMES} from './Story';
 import {StoryZH, STORY_ZH_FRAMES} from './StoryZH';
 import {Fight, FIGHT_EN_FRAMES, FIGHT_ZH_FRAMES} from './Fight';
 import {Fight2, FIGHT2_EN_FRAMES, FIGHT2_ZH_FRAMES} from './Fight2';
+import {Phantom, PHANTOM_EN_FRAMES, PHANTOM_ZH_FRAMES} from './Phantom';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -49,5 +50,7 @@ export const Root: React.FC = () => (
     <Composition id="FightZH" component={Fight} width={1080} height={1920} fps={30} durationInFrames={FIGHT_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
     <Composition id="Fight2EN" component={Fight2} width={1080} height={1920} fps={30} durationInFrames={FIGHT2_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
     <Composition id="Fight2ZH" component={Fight2} width={1080} height={1920} fps={30} durationInFrames={FIGHT2_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
+    <Composition id="PhantomEN" component={Phantom} width={1080} height={1920} fps={30} durationInFrames={PHANTOM_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
+    <Composition id="PhantomZH" component={Phantom} width={1080} height={1920} fps={30} durationInFrames={PHANTOM_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
   </>
 );
