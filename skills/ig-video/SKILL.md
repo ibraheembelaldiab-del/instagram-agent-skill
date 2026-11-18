@@ -379,3 +379,11 @@ the cover reading "People who go"); a big close-up of the figure's emotion,
 not two tiny figures; 25 s and two points max; one curiosity gap; an easy
 comment prompt early ("打1或2"); Douyin itself recommends openings with a real
 face, so offer the creator a 2-second silent reaction shot of himself.
+
+## Update: fast voice, no pauses (user rule)
+
+The user wants fast talk with no pauses between sentences: fast speech keeps people focused.
+
+- Build every voice with `tools/tight.py <dir> <mp3prefix> <beats.json> 1.2 0.12`. It trims the edges, cuts inside pauses to 0.12s, speeds up 1.2x (pitch kept) and puts a 0.12s gap between lines.
+- Then run `tools/align.py <dir> <lang>` (whisper, no initial_prompt) to re-time the captions to the real audio. Copy `q_voice.wav` and `q_beats.json` into the Remotion project.
+- Target length: about 25s for 2 points.
