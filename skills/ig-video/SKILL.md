@@ -435,3 +435,17 @@ Lessons:
   - a boom plus a high swoosh under each title card
   - scene-specific hits: clicks for loops, heartbeats (`boom` pairs), `pop` when items appear, `ding`/`chime` on a payoff
 - Export one file named `*-SFX.mp4`, normalised with `loudnorm=I=-16:TP=-1.5`.
+
+## TOPICS ALREADY USED: never repeat (check before picking a topic)
+
+The user caught a repeat: the spotlight effect was used twice. Check this list first, and add every new topic to it.
+
+- 拖延 / procrastination (Procrast, Habit*, Huashu/Spot cards)
+- 睡前刷手机 / sleep tips (Sleep, Spec); bedtime procrastination / 报复性熬夜 (Night, long horizontal)
+- 话术 / the "because" request trick (Langer copy machine) (Elegant, Vibe)
+- Spotlight effect: embarrassing T-shirt, replaying moments (Story/StoryZH, Spot)
+- Overthinking a chat: spotlight + illusion of transparency + liking gap + self-distancing (Talk long ZH, TalkShort EN). The repeat.
+- Going silent in a fight / flooding (Fight, Fight2)
+- Phantom vibration (Phantom)
+- Doorway effect (Door)
+- Brain drain: phone presence (Ward 2017) + closeness (Przybylski & Weinstein 2013) (Drain EN short)

@@ -24,6 +24,7 @@ import {Door, DOOR_EN_FRAMES, DOOR_ZH_FRAMES} from './Door';
 import {Night, NIGHT_FRAMES} from './Night';
 import {Talk, TALK_FRAMES} from './Talk';
 import {TalkShort, TALKS_EN_FRAMES} from './TalkShort';
+import {Drain, DRAIN_EN_FRAMES} from './Drain';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -61,5 +62,6 @@ export const Root: React.FC = () => (
     <Composition id="Night" component={Night} width={1920} height={1080} fps={30} durationInFrames={NIGHT_FRAMES} />
     <Composition id="Talk" component={Talk} width={1920} height={1080} fps={30} durationInFrames={TALK_FRAMES} />
     <Composition id="TalkShortEN" component={TalkShort} width={1080} height={1920} fps={30} durationInFrames={TALKS_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
+    <Composition id="DrainEN" component={Drain} width={1080} height={1920} fps={30} durationInFrames={DRAIN_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
   </>
 );
