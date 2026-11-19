@@ -63,6 +63,34 @@ LINES.forEach((l, i) => {
   else SCENES.push({sc: l.sc, a: i === 0 ? 0 : START[i], b: end, first: i});
 });
 
+
+// Sound design (no music): a soft tick when each subtitle line appears, a swoosh on
+// every scene change, a low boom under each title card, and scene-specific hits.
+const SC = (sc: string) => SCENES.find((s) => s.sc === sc)!;
+const LS = (sc: string, j: number) => START[SC(sc).first + j];
+const SFX: {at: number; f: string; v: number}[] = [];
+LINES.forEach((l, i) => { if (i > 0 && l.t) SFX.push({at: START[i], f: 'tick', v: 0.18}); });
+SCENES.slice(1).forEach((s) => SFX.push({at: s.a - 0.15, f: 'lowswoosh', v: 0.45}));
+['card1', 'card2', 'card3'].forEach((c) => { const s = SC(c); SFX.push({at: s.a + 0.05, f: 'boom', v: 0.35}, {at: s.a + 0.1, f: 'highswoosh', v: 0.3}); });
+// replay: a click each time the thought loops back
+for (let t0 = SC('replay').a + 1.1; t0 < SC('replay').b - 0.2; t0 += 1.1) SFX.push({at: t0, f: 'click', v: 0.9});
+SFX.push({at: 0.05, f: 'boom', v: 0.3});
+// spotlight: the two bars land
+SFX.push({at: SC('shirt').a + 0.35, f: 'pop', v: 0.35}, {at: LS('shirt', 1) + 0.25, f: 'pop', v: 0.35}, {at: LS('shirt', 1) + 0.9, f: 'ding', v: 0.25});
+// heart: heartbeats while "you feel it"
+for (let t0 = SC('heart').a + 0.2; t0 < LS('heart', 1); t0 += 0.62) SFX.push({at: t0, f: 'boom', v: 0.28}, {at: t0 + 0.16, f: 'boom', v: 0.16});
+SFX.push({at: LS('heart', 1) + 0.1, f: 'chime', v: 0.2});
+// speech: score cards pop in
+[0, 1, 2, 3, 4].forEach((j) => SFX.push({at: LS('speech', 2) + 0.1 + j * 0.12, f: 'pop', v: 0.28}));
+SFX.push({at: LS('speech', 2) + 0.8, f: 'ding', v: 0.25});
+// liking gap: bars fill, then the gap appears
+SFX.push({at: SC('like').a + 0.4, f: 'rswoosh', v: 0.35}, {at: SC('like').a + 1.6, f: 'rswoosh', v: 0.35}, {at: SC('like').a + 2.5, f: 'ding', v: 0.3});
+[0, 1, 2, 3, 4, 5].forEach((j) => SFX.push({at: LS('like', 1) + j * 0.1, f: 'tick', v: 0.25}));
+// fix: zoom out to the observer
+SFX.push({at: LS('fix', 1), f: 'highswoosh', v: 0.4}, {at: LS('fix', 1) + 1.0, f: 'chime', v: 0.3});
+// end
+SFX.push({at: SC('end').a + 0.2, f: 'chime', v: 0.3}, {at: SC('refs').a, f: 'lowswoosh', v: 0.3});
+
 const ALLTEXT = LINES.map((l) => plain(l.t) + (l.card?.[0] ?? '')).join('') + '说错一句话回家想一整晚我刚才那是不蠢他高兴了第遍以为注意到的人实际你感觉别看知道透明度错觉对方多喜欢个月旁观者参考资料';
 
 const useFonts = () => {
@@ -311,9 +339,9 @@ export const Talk: React.FC = () => {
         脑子<span style={{background: Y, color: '#16141a', padding: '0 8px', borderRadius: 6, marginLeft: 6}}>说明书</span>
       </div>
       <AbsoluteFill style={{background: '#000', opacity: end}} />
-      {SCENES.slice(1).map((s, j) => (
-        <Sequence key={j} from={Math.round(s.a * fps)} durationInFrames={Math.round(1.0 * fps)}>
-          <Audio src={staticFile('sfx/lowswoosh.wav')} volume={0.12} />
+      {SFX.map((x, j) => (
+        <Sequence key={j} from={Math.max(0, Math.round(x.at * fps))} durationInFrames={Math.round(2.5 * fps)}>
+          <Audio src={staticFile(`sfx/${x.f}.wav`)} volume={x.v} />
         </Sequence>
       ))}
     </AbsoluteFill>

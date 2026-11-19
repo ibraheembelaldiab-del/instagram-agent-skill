@@ -425,3 +425,13 @@ Lessons:
 - No voice is needed. Text plus music is enough, which also removes the TTS cost and the AI-voice problem.
 - Every claim has a study behind it.
 - Copy the format (pattern), never the video's look one to one.
+
+## RULE (user, 2026-11-19): no music, always sound effects
+
+- Never add music to the export. The user adds a song in the app if they want one.
+- Every video gets sound design in the composition (see the `SFX` list in Talk.tsx):
+  - a soft tick for each subtitle line (`tick`, about 0.18)
+  - a swoosh on every scene change (`lowswoosh`, about 0.45)
+  - a boom plus a high swoosh under each title card
+  - scene-specific hits: clicks for loops, heartbeats (`boom` pairs), `pop` when items appear, `ding`/`chime` on a payoff
+- Export one file named `*-SFX.mp4`, normalised with `loudnorm=I=-16:TP=-1.5`.
