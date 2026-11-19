@@ -449,3 +449,13 @@ The user caught a repeat: the spotlight effect was used twice. Check this list f
 - Phantom vibration (Phantom)
 - Doorway effect (Door)
 - Brain drain: phone presence (Ward 2017) + closeness (Przybylski & Weinstein 2013) (Drain EN short)
+
+## RULE from the phantom watch-analysis curve (Douyin 观看分析, Nov 19)
+
+- The big drop came at second 4 to 5. On screen was a static phone ("没有新消息") from 2.2s to 5s.
+- The voice was reading the cover text that viewers had already seen ("89%的大学生都有过").
+- No motion and no new information means a swipe. After 5s the curve was flat, so the people who got past it kept watching.
+
+Rules:
+1. Something visibly changes every 1 to 1.5 seconds in the first 8 seconds: a new element, a zoom, a number popping in. Never hold a still frame.
+2. The cover/hook text asks the question and must not contain the answer or the stat. The voice adds new information from second 2 onward and never re-reads the screen.
