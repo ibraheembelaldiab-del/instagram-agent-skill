@@ -23,6 +23,7 @@ import {Phantom, PHANTOM_EN_FRAMES, PHANTOM_ZH_FRAMES} from './Phantom';
 import {Door, DOOR_EN_FRAMES, DOOR_ZH_FRAMES} from './Door';
 import {Night, NIGHT_FRAMES} from './Night';
 import {Talk, TALK_FRAMES} from './Talk';
+import {TalkShort, TALKS_EN_FRAMES} from './TalkShort';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -59,5 +60,6 @@ export const Root: React.FC = () => (
     <Composition id="DoorZH" component={Door} width={1080} height={1920} fps={30} durationInFrames={DOOR_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
     <Composition id="Night" component={Night} width={1920} height={1080} fps={30} durationInFrames={NIGHT_FRAMES} />
     <Composition id="Talk" component={Talk} width={1920} height={1080} fps={30} durationInFrames={TALK_FRAMES} />
+    <Composition id="TalkShortEN" component={TalkShort} width={1080} height={1920} fps={30} durationInFrames={TALKS_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
   </>
 );
