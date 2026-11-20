@@ -1,0 +1,14 @@
+{
+  "fps": 30,
+  "colors": {
+    "bg": ["#1f4fb3", "#3a2a8a", "#14607a"],
+    "card": "#ffffff",
+    "text": "#111111",
+    "accent": "#ffd23f"
+  },
+  "beats": [
+    {"start": 0, "dur": 2.5, "say": "Your hook line goes here.", "card": "Six words or fewer", "shot": "motion in frame one"},
+    {"start": 2.5, "dur": 3, "say": "The stake. Why this matters to them.", "shot": "your face, to camera"},
+    {"start": 5.5, "dur": 3, "say": "The payoff, then one ask.", "card": "Save this", "shot": "the result"}
+  ]
+}
