@@ -459,3 +459,14 @@ The user caught a repeat: the spotlight effect was used twice. Check this list f
 Rules:
 1. Something visibly changes every 1 to 1.5 seconds in the first 8 seconds: a new element, a zoom, a number popping in. Never hold a still frame.
 2. The cover/hook text asks the question and must not contain the answer or the stat. The voice adds new information from second 2 onward and never re-reads the screen.
+- Decoy effect: popcorn sizes + Economist subscription test (Decoy, colourful story, ZH + EN)
+
+## STYLE (user, 2026-11-20): colourful story videos, not dark explainers
+
+The user asked for "more coloring, more backgrounds, stories, something to entertain". The template is `Decoy.tsx`.
+
+- A recurring character, Leo / 小林: round head, yellow hoodie, moods happy, wow, think and shock. He lives the story (at a counter, thinking, shocked by the reveal).
+- Each beat has its own bright radial-gradient background that crossfades: cinema red, orange, purple, spotlight teal, green, blue, orange, teal, pink. Never one dark background for the whole video.
+- Props are fun objects (popcorn buckets, a fishing hook with bait, a scale, magazine cards, confetti, marquee bulbs) and they pop in on the spoken word.
+- Captions sit in a dark rounded pill so they read on any colour. The top label is a tilted yellow sticker with an ink border.
+- Story structure: hook question → character story → reveal (name of the effect) → comment ask → "第二点更离谱" → real experiment with numbers → fix question → share.
