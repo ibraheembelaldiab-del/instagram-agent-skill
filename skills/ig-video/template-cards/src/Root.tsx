@@ -26,6 +26,8 @@ import {Talk, TALK_FRAMES} from './Talk';
 import {TalkShort, TALKS_EN_FRAMES} from './TalkShort';
 import {Drain, DRAIN_EN_FRAMES} from './Drain';
 import {Decoy, DECOY_EN_FRAMES, DECOY_ZH_FRAMES} from './Decoy';
+import {Praise, PRAISE_EN_FRAMES, PRAISE_ZH_FRAMES} from './Praise';
+import {Kind, KIND_EN_FRAMES, KIND_ZH_FRAMES} from './Kind';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -66,5 +68,9 @@ export const Root: React.FC = () => (
     <Composition id="DrainEN" component={Drain} width={1080} height={1920} fps={30} durationInFrames={DRAIN_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
     <Composition id="DecoyEN" component={Decoy} width={1080} height={1920} fps={30} durationInFrames={DECOY_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
     <Composition id="DecoyZH" component={Decoy} width={1080} height={1920} fps={30} durationInFrames={DECOY_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
+    <Composition id="PraiseEN" component={Praise} width={1080} height={1920} fps={30} durationInFrames={PRAISE_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
+    <Composition id="PraiseZH" component={Praise} width={1080} height={1920} fps={30} durationInFrames={PRAISE_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
+    <Composition id="KindEN" component={Kind} width={1080} height={1920} fps={30} durationInFrames={KIND_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
+    <Composition id="KindZH" component={Kind} width={1080} height={1920} fps={30} durationInFrames={KIND_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
   </>
 );

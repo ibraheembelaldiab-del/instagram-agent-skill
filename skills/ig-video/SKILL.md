@@ -470,3 +470,12 @@ The user asked for "more coloring, more backgrounds, stories, something to enter
 - Props are fun objects (popcorn buckets, a fishing hook with bait, a scale, magazine cards, confetti, marquee bulbs) and they pop in on the spoken word.
 - Captions sit in a dark rounded pill so they read on any colour. The top label is a tilted yellow sticker with an ink border.
 - Story structure: hook question → character story → reveal (name of the effect) → comment ask → "第二点更离谱" → real experiment with numbers → fix question → share.
+- Praise = reward (萝卜纸巾猫 trend; Izuma 2008, Sugawara 2012) (Praise, colourful story, ZH + EN)
+- Self-compassion / 爱你老己 (Breines & Chen 2012; hand on heart, Dreisoerner 2021) (Kind, colourful story, ZH + EN)
+
+## Schedule (user, 2026-11-22): 2 videos a day
+
+- Post at 11:30 and 18:30, China time.
+- Make both videos for the day in one go, numbered `1-…` and `2-…`.
+- Add Google Calendar reminders with popups at 10 minutes and 0 minutes. Use timeZone Asia/Shanghai, because the calendar's default is UTC.
+- Trend sources: Chinese meme roundups (e.g. 萝卜纸巾猫, 爱你老己). Tie the meme to a real study.
