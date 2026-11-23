@@ -552,3 +552,30 @@ The cast now includes 主子 / Boss, Jay's chubby grey cat:
 - Use 2–3 zoom-ins per conversation (on average) onto the character who is reacting or delivering the punchline.
 - Ease the zoom in, hold it, then return to the wide shot.
 - No rapid angle changes every few seconds.
+
+## FREE production stack (user, 2026-11-23: "if it takes money I don't need it")
+
+### Voices: CosyVoice2-0.5B (Alibaba, open source), running on CPU
+
+The user approved running it.
+- Code: `tools/cosyvoice/cv2.py`
+- Model: `FunAudioLLM/CosyVoice2-0.5B` from HuggingFace
+- Call: `inference_instruct2(text, '<instruction><|endofprompt|>', ref_wav)`
+- Reference timbre for each character is a synthetic edge-tts clip (never a real person):
+  - Auntie: zh-CN-liaoning-XiaobeiNeural, slowed and pitched down = old 东北 大妈
+  - Jay: Yunxi
+  - Brain: Xiaoxiao +20Hz
+  - Cat: Xiaoyi −10Hz
+- Instructions set dialect and emotion, e.g. 用东北话说…像六十岁的东北大妈, 懒洋洋心虚, 得意洋洋, 慵懒不屑.
+
+Gotchas:
+- Pin `transformers==4.51.3` and `diffusers==0.29.0`.
+- Install `setuptools<81` and `wget`.
+- Patch `frontend.load_wav` to use soundfile, because torchaudio needs torchcodec.
+- Speed is about 4–15 s per line on CPU.
+
+### Backgrounds: Canva generate-image (already linked)
+
+- Prompt for an original adult-sitcom background with real 3/4 perspective depth and no characters.
+- To get the full-size file: create-design (16:9 page with the media id) → export-design PNG 1920×1080 → download.
+- The lobby of 幸福小区 3栋 came out at TV quality.
