@@ -479,3 +479,14 @@ The user asked for "more coloring, more backgrounds, stories, something to enter
 - Make both videos for the day in one go, numbered `1-…` and `2-…`.
 - Add Google Calendar reminders with popups at 10 minutes and 0 minutes. Use timeZone Asia/Shanghai, because the calendar's default is UTC.
 - Trend sources: Chinese meme roundups (e.g. 萝卜纸巾猫, 爱你老己). Tie the meme to a real study.
+
+## Back to phantom style (user, 2026-11-23)
+
+The user said the colourful cartoon style made the level "sooo bad". Use the phantom style by default from now on:
+- dark navy backdrop with yellow highlights
+- big glowing line-art close-ups (face r 250–300, phone, brain, paper)
+- glowing chips
+
+Templates: `PraiseN.tsx` / `KindN.tsx`. They are generated from a shared head and main: Backdrop, Phantom hook/label/captions, `say()` timing, the `sfxFor` SFX list.
+
+Decoy, Praise and Kind (cartoon) are kept only for reference.
