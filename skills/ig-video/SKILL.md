@@ -526,3 +526,22 @@ Decoy, Praise and Kind (cartoon) are kept only for reference.
   - EN: Brain = Andrew +25Hz, Jay = Brian
 - Use `gagpad.py` to insert comedy pauses after chosen beats, plus an end tag.
 - Every episode still has a real study, a hook question cover, a comment ask and a share line.
+
+## RULE (user, 2026-11-23): Jay must talk at normal speed
+
+The sitcom episodes are character acting, not fast narration, so don't apply the global speed-up there.
+
+- Use `tight.py` with tempo 1.0 for sitcom episodes.
+- Speed comes only from each voice's own `rate`:
+  - Jay +0% (normal)
+  - Brain +12%
+  - Cat −12% (deadpan)
+- Keep pauses between lines at 0.15–0.2 s, plus the comedy pauses from `gagpad.py`.
+
+The fast-voice rule (1.2×) still applies to narrated shorts only.
+
+The cast now includes 主子 / Boss, Jay's chubby grey cat:
+- catchphrase "随便。" / "Whatever."
+- terrified when Brain pops out
+- bosses Jay into getting her things
+- ZH voice: zh-CN-XiaoyiNeural −12% −15Hz. EN voice: en-US-JennyNeural −12% −12Hz.
