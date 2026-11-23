@@ -579,3 +579,20 @@ Gotchas:
 - Prompt for an original adult-sitcom background with real 3/4 perspective depth and no characters.
 - To get the full-size file: create-design (16:9 page with the media id) → export-design PNG 1920×1080 → download.
 - The lobby of 幸福小区 3栋 came out at TV quality.
+
+### Cast and voice updates (user, 2026-11-23)
+
+- 主子 is now an ORANGE cat (橘猫) with a GREEDY OLD MAN voice.
+  - Reference: zh-CN-YunyangNeural −12% −18Hz, then pitched down.
+  - CosyVoice instruct: 用一个贪心的老大爷的语气.
+  - Design must stay original and not resemble any famous cartoon cat.
+- 王阿姨 uses voice version 1, deeper and heavier.
+  - Reference: Xiaobei with asetrate 0.86.
+  - Instruct "用东北话说这句话" ONLY. Long instructions leak into the spoken audio.
+  - Post: asetrate 0.95 + atempo 1.05.
+  - Script uses real 东北 words: 咋整, 嘎哈, 瞅见, 搭把手, 哎呀妈呀.
+- Backgrounds:
+  - Never a straight-on one-point corridor (the user said it "looks like kids editing").
+  - Use a TWO-POINT perspective corner view: the far corner slightly off-centre, walls receding diagonally, a cut-off foreground prop.
+  - Style: flat solid colours with clean ink outlines (adult TV cartoon), not painterly or anime.
+  - Canva media MAHbvf24sno is the approved lobby.
