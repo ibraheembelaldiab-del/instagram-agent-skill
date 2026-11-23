@@ -4,8 +4,10 @@ import edge_tts
 D = sys.argv[1]
 VOICES = json.loads(sys.argv[2])
 beats = json.load(open(f'{D}/script.json'))
-async def one(i, text, voice):
-    c = edge_tts.Communicate(text, voice, rate='+0%', proxy=os.environ['HTTPS_PROXY'], boundary='WordBoundary')
+async def one(i, text, v):
+    if isinstance(v, str):
+        v = {'voice': v}
+    c = edge_tts.Communicate(text, v['voice'], rate=v.get('rate', '+0%'), pitch=v.get('pitch', '+0Hz'), proxy=os.environ['HTTPS_PROXY'], boundary='WordBoundary')
     words, audio = [], bytearray()
     async for ch in c.stream():
         if ch['type'] == 'audio':

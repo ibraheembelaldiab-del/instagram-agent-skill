@@ -503,3 +503,26 @@ Decoy, Praise and Kind (cartoon) are kept only for reference.
 - Mouth flaps come from a per-frame RMS envelope (`song-<lang>-env.json`).
 - Full room backgrounds: elevator, bathroom, living room. Sitcom tricks: a "三天后" time card, a sepia 1968 cutaway, "POP!" when Brain appears.
 - Captions are a white box with an ink border and a speaker tag. Template: `Song.tsx`.
+
+## SERIES (user, 2026-11-23): "my own Family-Guy-style series with my own characters"
+
+- Match the genre's look and directing only. Never copy any show's characters, house, theme song or catchphrases.
+- World: 幸福小区 3栋 (a Chinese apartment block).
+- Cast:
+  - 阿杰 / Jay: the guy who falls for it
+  - 脑子 / Brain: the mascot. It pops out of Jay's head with POP + boing.
+  - 王阿姨 / Auntie Wang: the neighbour, with a purple perm and glasses
+- Directing (template `Ep1.tsx`):
+  - hook shot
+  - exterior establishing shot with a time card
+  - angle cuts and snap zooms (`snap()`) on reactions
+  - a deadpan close-up with crickets
+  - a rimshot after a punchline
+  - a sepia cutaway introduced with "就像…那次"
+  - a callback tag at the end
+- Funny SFX in `public/sfx`: boing, slideup, slidedown, rimshot, scratch, crickets, bonk. Plus pop, whip, ding.
+- Cartoon voices via `voice2.py` with per-character rate/pitch:
+  - ZH: Brain = Xiaoxiao +30Hz, Jay = Yunxi +8%
+  - EN: Brain = Andrew +25Hz, Jay = Brian
+- Use `gagpad.py` to insert comedy pauses after chosen beats, plus an end tag.
+- Every episode still has a real study, a hook question cover, a comment ask and a share line.
