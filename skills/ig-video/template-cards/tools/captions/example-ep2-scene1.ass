@@ -1,0 +1,17 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1344
+PlayResY: 768
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Line,WenQuanYi Zen Hei,52,&H00FFFFFF,&H00FFFFFF,&H001C1216,&H8C000000,1,0,0,0,100,100,2,0,1,5,2,2,40,40,46,1
+Style: Tag,WenQuanYi Zen Hei,28,&H00FFFFFF,&H00FFFFFF,&H00DD4E9D,&H00DD4E9D,1,0,0,0,100,100,2,0,3,6,0,2,40,40,118,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:05.20,0:00:12.50,Tag,,0,0,0,,王阿姨
+Dialogue: 1,0:00:05.20,0:00:08.20,Line,,0,0,0,,哎呀妈呀！我的橘子！
+Dialogue: 1,0:00:08.25,0:00:10.20,Line,,0,0,0,,这可咋整啊？
+Dialogue: 1,0:00:10.25,0:00:12.50,Line,,0,0,0,,谁来搭把手啊？

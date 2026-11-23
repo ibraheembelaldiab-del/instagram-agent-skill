@@ -609,3 +609,12 @@ Gotchas:
 - The first test (王阿姨 drops oranges) looked like a real animated film and the 东北 lines were spoken correctly.
 - An episode is several 15 s clips joined together. Each clip uses the user's monthly Canva AI limit.
 - Download: get-video-generation-status → download_url (curl). Check it with a frame sheet plus a whisper transcript.
+
+### Captions on AI clips (user, 2026-11-23: "add captions")
+
+- Burn ASS subtitles with ffmpeg: `ass=cap.ass:fontsdir=/usr/share/fonts/truetype/wqy` (font WenQuanYi Zen Hei).
+- Style `Line`: white bold 52px text with a dark outline. Style `Tag`: a small coloured box with the speaker name above it (王阿姨 is purple).
+- Timing: whisper word timestamps on the clip's audio. Split each line at its punctuation.
+- Example: `tools/captions/example-ep2-scene1.ass`.
+- Canva's monthly AI limit ran out on 2026-11-23 and resets 2026-12-01 08:00 China time. After scene 1, no AI images or videos can be made until then.
+- 王阿姨's reference frame is uploaded as Canva media MAHbvj1tnKk. Scene 2 (Jay walks past, "没看见") is fully written and ready to submit after the reset.
