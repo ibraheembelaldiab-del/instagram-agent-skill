@@ -30,6 +30,7 @@ import {Praise, PRAISE_EN_FRAMES, PRAISE_ZH_FRAMES} from './Praise';
 import {Kind, KIND_EN_FRAMES, KIND_ZH_FRAMES} from './Kind';
 import {PraiseN, PRAISEN_EN_FRAMES, PRAISEN_ZH_FRAMES} from './PraiseN';
 import {KindN, KINDN_EN_FRAMES, KINDN_ZH_FRAMES} from './KindN';
+import {Song, SONG_EN_FRAMES, SONG_ZH_FRAMES} from './Song';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -78,5 +79,7 @@ export const Root: React.FC = () => (
     <Composition id="PraiseNZH" component={PraiseN} width={1080} height={1920} fps={30} durationInFrames={PRAISEN_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
     <Composition id="KindNEN" component={KindN} width={1080} height={1920} fps={30} durationInFrames={KINDN_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
     <Composition id="KindNZH" component={KindN} width={1080} height={1920} fps={30} durationInFrames={KINDN_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
+    <Composition id="SongEN" component={Song} width={1080} height={1920} fps={30} durationInFrames={SONG_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
+    <Composition id="SongZH" component={Song} width={1080} height={1920} fps={30} durationInFrames={SONG_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
   </>
 );

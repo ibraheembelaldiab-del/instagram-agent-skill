@@ -490,3 +490,16 @@ The user said the colourful cartoon style made the level "sooo bad". Use the pha
 Templates: `PraiseN.tsx` / `KindN.tsx`. They are generated from a shared head and main: Backdrop, Phantom hook/label/captions, `say()` timing, the `sfxFor` SFX list.
 
 Decoy, Praise and Kind (cartoon) are kept only for reference.
+- Mere exposure / earworms (Zajonc 1968, Kunst-Wilson & Zajonc 1980) (Song, sitcom style, ZH + EN)
+
+## STYLE TEST (user, 2026-11-23): adult-sitcom cartoon (like Family Guy / Rick and Morty in feel only)
+
+- Never copy those shows' characters, designs or names. Use only our original cast:
+  - 阿杰 / Jay: spiky black hair, green hoodie, big white eyes. He falls for the trick.
+  - 脑子 / Brain: a pink brain mascot with big eyes and a smug look. It explains the science (and fits the brand).
+- Dialogue between the two, voiced with `tools/voice2.py`:
+  - ZH: Jay = zh-CN-YunxiNeural, Brain = zh-CN-XiaoxiaoNeural
+  - EN: Jay = en-US-BrianNeural, Brain = en-US-AndrewNeural
+- Mouth flaps come from a per-frame RMS envelope (`song-<lang>-env.json`).
+- Full room backgrounds: elevator, bathroom, living room. Sitcom tricks: a "三天后" time card, a sepia 1968 cutaway, "POP!" when Brain appears.
+- Captions are a white box with an ink border and a speaker tag. Template: `Song.tsx`.
