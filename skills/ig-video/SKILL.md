@@ -545,3 +545,10 @@ The cast now includes 主子 / Boss, Jay's chubby grey cat:
 - terrified when Brain pops out
 - bosses Jay into getting her things
 - ZH voice: zh-CN-XiaoyiNeural −12% −15Hz. EN voice: en-US-JennyNeural −12% −12Hz.
+
+## RULE (user, 2026-11-23): camera in sitcom episodes
+
+- Few camera cuts. Keep one steady wide shot per scene, the way a sitcom stages a room.
+- Use 2–3 zoom-ins per conversation (on average) onto the character who is reacting or delivering the punchline.
+- Ease the zoom in, hold it, then return to the wide shot.
+- No rapid angle changes every few seconds.
