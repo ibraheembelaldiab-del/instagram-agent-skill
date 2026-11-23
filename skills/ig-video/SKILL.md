@@ -582,14 +582,14 @@ Gotchas:
 
 ### Cast and voice updates (user, 2026-11-23)
 
-- 主子 is now an ORANGE cat (橘猫) with a GREEDY OLD MAN voice.
+- 主子 is now an ORANGE cat (橘猫) with a GREEDY OLD MAN voice (approved: sample 6-cat-greedy).
   - Reference: zh-CN-YunyangNeural −12% −18Hz, then pitched down.
   - CosyVoice instruct: 用一个贪心的老大爷的语气.
   - Design must stay original and not resemble any famous cartoon cat.
 - 王阿姨 uses voice version 1, deeper and heavier.
   - Reference: Xiaobei with asetrate 0.86.
   - Instruct "用东北话说这句话" ONLY. Long instructions leak into the spoken audio.
-  - Post: asetrate 0.95 + atempo 1.05.
+  - Post: asetrate 0.95 + atempo 1.18, with inner pauses cut to 0.25 s (the user wanted her a little faster).
   - Script uses real 东北 words: 咋整, 嘎哈, 瞅见, 搭把手, 哎呀妈呀.
 - Backgrounds:
   - Never a straight-on one-point corridor (the user said it "looks like kids editing").
