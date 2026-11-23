@@ -596,3 +596,16 @@ Gotchas:
   - Use a TWO-POINT perspective corner view: the far corner slightly off-centre, walls receding diagonally, a cut-off foreground prop.
   - Style: flat solid colours with clean ink outlines (adult TV cartoon), not painterly or anime.
   - Canva media MAHbvf24sno is the approved lobby.
+
+## AI VIDEO via Canva create-video (user, 2026-11-23): the look of the user's reference video
+
+- Reference: a Douyin AI-animated nostalgia story with a 东北大姨. About 70 shots in under 5 minutes, with painted depth, many locations and characters walking between places.
+- The free path is Canva `create-video` with engine **h3max**. The user accepted it as "a different model"; the better engine needs a paid Canva plan, which the user declined.
+- Guide: `generic` (h3max). Each clip is 5–15 s at 768p (1344×768).
+  - Up to 5 shots per clip, each with one framing, one action and one camera move.
+  - Maximum 40 spoken words, ≤3 words/s, and the last 3 s of the clip without speech.
+- Character identity: a generated `presenter` reference with a detailed character-design prompt (clothes, hair, props). Scene: the Canva media id as role `scene` (lobby MAHbvZ0DznY).
+- Audio mode on-camera, accent "Northeastern Mandarin (Dongbei dialect)". The voice_direction describes age, texture and energy, and never names a real person.
+- The first test (王阿姨 drops oranges) looked like a real animated film and the 东北 lines were spoken correctly.
+- An episode is several 15 s clips joined together. Each clip uses the user's monthly Canva AI limit.
+- Download: get-video-generation-status → download_url (curl). Check it with a frame sheet plus a whisper transcript.
