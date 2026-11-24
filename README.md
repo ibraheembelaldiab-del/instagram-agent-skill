@@ -1,6 +1,6 @@
 # The Instagram agent skill
 
-Thirteen Claude skills that run an Instagram account. Free, MIT, no signup, no
+Sixteen Claude skills that run an Instagram account. Free, MIT, no signup, no
 API key, nothing to connect.
 
 One of them writes your Reels off 26 hook formulas and scores the hook before
@@ -52,7 +52,7 @@ reels and say "write my voice.md from these". Every skill reads that file. It
 matters more here than on other platforms, because you have to say the words
 out loud.
 
-## The thirteen
+## The sixteen
 
 | command | what it does |
 | --- | --- |
@@ -68,6 +68,9 @@ out loud.
 | `/ig-reply` | The thread under your own post. Sorts into keyword / lead / substance / question / support / noise, then writes in that order. |
 | `/ig-dm` | The keyword delivery, the first message, the collab pitch, and the two follow-ups. Two. |
 | `/ig-repurpose` | One video, podcast or newsletter into a week of reels and carousels that each stand alone. |
+| `/ig-video` | Builds the Reel. The script becomes a 1080x1920 MP4 with [Remotion](https://github.com/remotion-dev/remotion): animated cards, word-by-word captions, your clips. |
+| `/ig-voiceover` | A free ElevenLabs replacement. Reads the script with [Kokoro](https://github.com/thewh1teagle/kokoro-onnx) on your own computer, with a tone tag per line so it does not sound flat. |
+| `/ig-transcribe` | [Whisper](https://github.com/openai/whisper) on your recording: an .srt in short lines, the transcript, and real timings for the video. |
 | `/ig-audit` | Post-mortem on what you already posted. Ranks by outlier multiple and sends per reach, not views. |
 
 ## The five tools that actually run
@@ -323,8 +326,18 @@ skills/ig-human/humanize.py        the three cleaning passes
 skills/ig-human/detect.py          the five-check panel
 skills/ig-viral/swipe.py           outlier ranking and formula classification
 skills/ig-profile/rubric.json      the 100-point profile score
+skills/ig-video/template/          the Remotion project. Edit reel.json, run npm run render
+skills/ig-voiceover/voiceover.py   script to voiceover.wav with real per-beat timings
+skills/ig-transcribe/transcribe.py recording to .srt, transcript and reel.json timings
 templates/voice.md                 your voice profile. Fill this in first.
 ```
+
+## Outside tools
+
+The pack itself is MIT. Three skills call free tools you install yourself, and
+those keep their own licences: Remotion (free for individuals and companies of
+up to three people, a paid licence above that), Kokoro (Apache-2.0), Piper
+(GPL-3.0) and Whisper (MIT). Everything still runs on your own computer, with no account.
 
 ## Credit
 
