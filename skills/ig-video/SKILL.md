@@ -618,3 +618,18 @@ Gotchas:
 - Example: `tools/captions/example-ep2-scene1.ass`.
 - Canva's monthly AI limit ran out on 2026-11-23 and resets 2026-12-01 08:00 China time. After scene 1, no AI images or videos can be made until then.
 - 王阿姨's reference frame is uploaded as Canva media MAHbvj1tnKk. Scene 2 (Jay walks past, "没看见") is fully written and ready to submit after the reset.
+
+### Episode 2 full (2026-11-24): `Ep2b.tsx` (code animation while the Canva AI limit is out)
+
+- Background: the painted two-point lobby image (`public/ep2/lobby2.png`, from Canva).
+- Characters are puppets placed by floor depth: `sc(feetY)` sets the scale, and each one gets a floor shadow.
+- Neighbour reactions are staggered by 0.5 s each.
+- 主子 the orange greedy old cat:
+  - only watches from the bench at first, then grins
+  - panics to the top of the mailboxes when Brain pops out
+  - later sneaks in, steals the fish, and lounges on the mailboxes eating it ("随……便。" + burp)
+- Cutaways: sepia 1968 intercom study (85% vs 31%) and beach radio study (20% vs 95%).
+- Voices:
+  - CosyVoice2 lines from `tools/ep2/jobs.json` (short instructions only).
+  - `build.py` places them with anchors and gaps and trims extra AI laughs (e.g. line 05). `align2.py` gives karaoke timings.
+- Sound effects: recorded CC0 packs from OpenGameArt in `public/sfx2` (see LICENSE.txt). kenney.nl and pixabay return 403 through the proxy.

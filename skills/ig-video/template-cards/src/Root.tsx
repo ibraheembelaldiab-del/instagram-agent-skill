@@ -33,6 +33,7 @@ import {KindN, KINDN_EN_FRAMES, KINDN_ZH_FRAMES} from './KindN';
 import {Song, SONG_EN_FRAMES, SONG_ZH_FRAMES} from './Song';
 import {Ep1, EP1_EN_FRAMES, EP1_ZH_FRAMES} from './Ep1';
 import {Ep2, EP2_FRAMES} from './Ep2';
+import {Ep2b, EP2B_FRAMES} from './Ep2b';
 import {VibeEN, VIBE_EN_FRAMES} from './VibeEN';
 
 export const Root: React.FC = () => (
@@ -86,5 +87,6 @@ export const Root: React.FC = () => (
     <Composition id="Ep1EN" component={Ep1} width={1080} height={1920} fps={30} durationInFrames={EP1_EN_FRAMES} defaultProps={{lang: 'en' as const}} />
     <Composition id="Ep1ZH" component={Ep1} width={1080} height={1920} fps={30} durationInFrames={EP1_ZH_FRAMES} defaultProps={{lang: 'zh' as const}} />
     <Composition id="Ep2ZH" component={Ep2} width={1920} height={1080} fps={30} durationInFrames={EP2_FRAMES} />
+    <Composition id="Ep2bZH" component={Ep2b} width={1920} height={1080} fps={30} durationInFrames={EP2B_FRAMES} />
   </>
 );

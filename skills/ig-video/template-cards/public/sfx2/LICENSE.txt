@@ -1,0 +1,6 @@
+All sounds in this folder are CC0 (public domain) from OpenGameArt.org:
+- "100 CC0 SFX" by rubberduck: https://opengameart.org/content/100-cc0-sfx
+- "80 CC0 creature SFX" by rubberduck: https://opengameart.org/content/80-cc0-creature-sfx
+- "51 UI sound effects" (UI_SFX_Set) by Kenney: https://opengameart.org/content/51-ui-sound-effects-buttons-switches-and-clicks
+- "RPG Sound Pack" by artisticdude: https://opengameart.org/content/rpg-sound-pack
+crickets.wav is synthesised.
